@@ -25,11 +25,12 @@ public class indexController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("/index");
 		
-		mv.addObject("listaProdutos", produtoRepositorio.findAll());
+		mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
 		
 		return mv;
 		
 	}
+	
 	
 	@GetMapping("/loja/detalhes/{produtoId}")
 	public ModelAndView detalhesProduto(@PathVariable Integer produtoId) {

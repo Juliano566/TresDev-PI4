@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org" >
+	
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Loja  -=TresDev=-</title>
+
+  <!-- importação do bootstrap min.css -->
+  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- importação do css custom -->
+  <link href="../../css/shop-homepage.css" rel="stylesheet">
+
+</head>
+	
+<body>
+	
+	<div th:replace="layout :: navlinks"></div>
+  <!-- Page Content -->
+  <div class="container mt-5 pt-5">
+
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4">Categorias</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">HARDWARE</a>
+          <a href="#" class="list-group-item">PERIFÉRICOS</a>
+          <a href="#" class="list-group-item">COMPUTADORES</a>
+          <a href="#" class="list-group-item">MONITORES</a>
+          <a href="#" class="list-group-item">CADEIRAS GAMER</a>
+          <a href="#" class="list-group-item">ELETRONICOS</a>
+          <a href="#" class="list-group-item">NOTEBOOKS E PORTÁTEIS</a>
+          <a href="#" class="list-group-item">REDE & WIRELLES</a>
+          <a href="#" class="list-group-item">MUNDO GEEK</a>
+          <a href="#" class="list-group-item">KIT UPGRADE</a>
+        </div>
+
+      </div>
+     
+
+
+      <div class="col-lg-9 my-5">
+
+       <!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div> -->
+
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 mb-4">
+          
+          
+          
+            <div class="card text-center">
+                  	 <h4 class="ml-5">Detalhes do produto: </h4>
+      				 <span th:text="${produto.nome}" ></span> 
+            
+              <img class="card-img-top" th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" alt="">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <span th:text="${produto.nome}" ></span>
+                </h4>
+                <h5><span th:text="${produto.preco}"></span></h5>
+                <p class="card-text"><span th:text="${produto.descricao}"></span></p>
+              </div>
+              <div class="card-footer">
+              
+              <div class="row">
+              <div class="col-sm"> <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small></div>
+              <div class="col-sm"> <a href="/"><button class="btn btn-danger">Voltar</button></a></div>	
+               </div>
+                
+              </div>
+            </div>
+          </div>
+
+         
+
+        </div>
+        <!-- /.row -->
+        
+
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+ 
+
+</body>
+<div th:replace="layout::footer"></div>
+</html>

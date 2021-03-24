@@ -13,8 +13,6 @@ import javax.persistence.Id;
 
 import org.springframework.web.multipart.MultipartFile;
 
-
-
 /**
  *
  * @author nails
@@ -23,40 +21,34 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Produto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String nome;
-    private String descricao;
-    private int estrelas;
-    private boolean status;
-    private int quantidade;
-    private double preco;
-    private String foto1;    
-    private String foto2;
-    private String foto3;
-    private String foto4;
-    
-  
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String nome;
+	private String descricao;
+	private int estrelas;
+	private boolean status;
+	private int quantidade;
+	private double preco;
+	private String foto1;
+	private String foto2;
+	private String foto3;
+	private String foto4;
 
-    public Produto() {
-    	
-    }
-    
-	public Produto(String nome) {
-		
-		this.nome = nome;
-		
+	public Produto() {
+
 	}
 
-    
+	public Produto(String nome) {
 
+		this.nome = nome;
+
+	}
 
 	public Produto(String nome, String foto1) {
-	
+
 		this.nome = nome;
 		this.foto1 = foto1;
 	}
@@ -148,8 +140,5 @@ public class Produto implements Serializable {
 	public void setFoto4(String foto4) {
 		this.foto4 = foto4;
 	}
-
-
-
 
 }
