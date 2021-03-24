@@ -93,7 +93,7 @@ public class Produto implements Serializable {
 		this.estrelas = estrelas;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
