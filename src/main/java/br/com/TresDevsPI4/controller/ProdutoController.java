@@ -50,6 +50,13 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@GetMapping("/administrativo")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("/administrativo/login");
+		
+		return mv;
+	}
 
 	@GetMapping("/administrativo/cadastro")
 	public ModelAndView cadastrar(Produto produto) {

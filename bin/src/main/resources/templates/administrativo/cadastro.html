@@ -38,7 +38,7 @@
 		<aside>
 			<nav class="sidebar  sidebar-open">
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="/home"> <i
+					<li class="nav-item"><a class="nav-link " href="#"> <i
 							class="oi oi-home"></i> <span>Home</span>
 					</a></li>
 				</ul>
@@ -54,6 +54,20 @@
 							<span>Listar </span>
 					</a></li>
 				</ul>
+
+				<ul class="nav nav-pills">
+					<li class="nav-item"><span class="nav-link active">Funcionario</span></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/administrativo/cadastro"> <i class="oi oi-plus"></i> <span>Cadastrar
+						</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="oi oi-spreadsheet"></i> <span>Listar </span>
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link"
+						href="/">Sair</a></li>
+				</ul>
 			</nav>
 		</aside>
 
@@ -68,18 +82,21 @@
 					</div>
 					<a class="btn btn-primary btn-md" href="/administrativo/lista"
 						role="button"> <span class="oi oi-spreadsheet"
-						title="Cadastro" aria-hidden="true"></span> <span>Listar Produto</span>
+						title="Cadastro" aria-hidden="true"></span> <span>Listar
+							Produto</span>
 					</a>
 				</nav>
 			</div>
 
+
 			<div class="container" id="cadastro">
-				<form action="/administrativo/salvar/imagens " enctype="multipart/form-data"  th:object="${produto}" method="POST">
+				<form action="/administrativo/salvar/imagens "
+					enctype="multipart/form-data" th:object="${produto}" method="POST">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="nome">Nome do Produto</label> <input type="text"
 								class="form-control" id="nome" placeholder="Nome Produto"
-								autofocus="autofocus" th:field="*{nome}" value="" />
+								autofocus="autofocus" th:field="*{nome}" value="" required />
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
@@ -88,7 +105,8 @@
 						<div class="form-group col-md-6">
 							<label for="preco">Preço</label> <input type="number"
 								class="form-control" id="preco" placeholder="Preço"
-								autofocus="autofocus" th:field="*{preco}" name="preco" value="" />
+								autofocus="autofocus" th:field="*{preco}" name="preco" value=""
+								required />
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
@@ -98,7 +116,7 @@
 							<label for="quantidade">Quantidade</label> <input type="number"
 								class="form-control" id="quantidade" placeholder="Quantidade"
 								autofocus="autofocus" th:field="*{quantidade}" name="quantidade"
-								value="" />
+								value="" required />
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
@@ -133,14 +151,14 @@
 							<label for="descricao">Descrição</label> <input type="text"
 								class="form-control" id="descricao" placeholder="descricao"
 								autofocus="autofocus" th:field="*{descricao}" name="descricao"
-								value="" />
+								value="" required />
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
-              	<div class="form-group col-md-12">
-              	<input type="file"  name="file"/>
-              	
-              	</div>
+					<div class="form-group col-md-12">
+						<input type="file" name="file" required />
+
+					</div>
 
 
 
@@ -152,9 +170,9 @@
 
 	</div>
 
-	<footer class="layout-footer">
+	<footer class="">
 		<div class="container">
-			<span class="footer-copy">&copy; 2018 MBallem. Todos os
+			<span class="footer-copy">&copy; 2021 TresDev. Todos os
 				direitos reservados.</span>
 		</div>
 	</footer>
