@@ -40,7 +40,7 @@
 		<aside>
 			<nav class="sidebar  sidebar-open">
 				<ul class="nav nav-pills">
-					<li class="nav-item"><a class="nav-link " href="#"> <i
+					<li class="nav-item"><a class="nav-link " href="/home"> <i
 							class="oi oi-home"></i> <span>Home</span>
 					</a></li>
 				</ul>
@@ -55,21 +55,6 @@
 							<span>Listar </span>
 					</a></li>
 				</ul>
-
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Funcionario</span></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="oi oi-plus"></i> <span>Cadastrar </span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="oi oi-spreadsheet"></i> <span>Listar </span>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/">Sair</a></li>
-				</ul>
-
-
 			</nav>
 		</aside>
 
@@ -97,6 +82,9 @@
 					<button class="btn btn-primary" type="button"
 						data-toggle="collapse" data-target="#collapseCargo"
 						aria-controls="collapseCargo">Categoria</button>
+					<button class="btn btn-primary" type="button"
+						data-toggle="collapse" data-target="#collapseData"
+						aria-controls="collapseData">Datas</button>
 				</p>
 				<div class="row">
 					<div class="col">
@@ -178,23 +166,25 @@
 								<td th:text="${produto.status}"></td>
 								<td th:text="${produto.estrelas}"></td>
 								<td th:text="${produto.descricao}"></td>
-								<td><img
-									th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}"
-									width="100" /></td>
+								<td><img th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" width="100"/></td>
 
 								<td colspan="2"><a class="btn btn-info btn-sm"
 									th:href="@{/administrativo/editar/{id}(id=${produto.id})}"
 									role="button"> <span class="oi oi-brush" title="Editar"
 										aria-hidden="true"></span>
-								</a> <a class="btn btn-info btn-sm"
-									th:href="@{/administrativo/inativar/{id}(id=${produto.id})}"
-									role="button"> <span class="oi oi-circle-x"
-										title="Ativar/Inativar" aria-hidden="true"></span>
 								</a>
+								
+								<a class="btn btn-info btn-sm" 
+									th:href="@{/administrativo/inativar/{id}(id=${produto.id})}"
+									role="button"> <span class="oi oi-circle-x" title="Ativar/Inativar"
+									
+										aria-hidden="true"></span>
+								</a>
+								
 							</tr>
 
 
-
+                              
 						</tbody>
 					</table>
 				</div>
@@ -203,7 +193,7 @@
 
 	</div>
 
-	<footer class="">
+	<footer class="layout-footer">
 		<div class="container">
 			<span class="footer-copy">&copy; 2021 TresDev. Todos os
 				direitos reservados.</span>
