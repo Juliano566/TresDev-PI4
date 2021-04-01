@@ -3,7 +3,7 @@
 	xmlns:th="http://thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net/thymeleaf/layout">
 <head>
-<title>Listar Produtos</title>
+<title>Listar Funcionario</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -63,8 +63,8 @@
 							class="oi oi-plus"></i> <span>Cadastrar </span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/administrativo/funcionario/listar"> <i class="oi oi-spreadsheet"></i>
-							<span>Listar </span>
+						href="/administrativo/funcionario/listar"> <i
+							class="oi oi-spreadsheet"></i> <span>Listar </span>
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="/">Sair</a></li>
@@ -79,11 +79,12 @@
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active"><i class="oi oi-caret-right"></i>
-							<span>Lista de Produtos</span></li>
+							<span>Lista de Funcionario</span></li>
 					</ul>
-					<a class="btn btn-primary btn-md" href="/administrativo/cadastro"
-						role="button"> <span class="oi oi-plus" title="Cadastro"
-						aria-hidden="true"></span> <span>Cadastrar Produtos</span>
+					<a class="btn btn-primary btn-md"
+						href="/administrativo/funcionario/cadastrar" role="button"> <span
+						class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
+							Funcionario</span>
 					</a>
 				</div>
 			</nav>
@@ -95,10 +96,6 @@
 					<button class="btn btn-primary" type="button"
 						data-toggle="collapse" data-target="#collapseNome"
 						aria-controls="collapseNome">Nome</button>
-					<button class="btn btn-primary" type="button"
-						data-toggle="collapse" data-target="#collapseCargo"
-						aria-controls="collapseCargo">Categoria</button>
-				</p>
 				<div class="row">
 					<div class="col">
 						<div class="collapse" id="collapseNome">
@@ -162,33 +159,25 @@
 							<tr>
 								<th>#</th>
 								<th>Nome</th>
-								<th>preco</th>
-								<th>quantidade</th>
+								<th>email</th>
+								<th>cargo</th>
 								<th>status</th>
-								<th>estrelas</th>
-								<th>descricao</th>
-								<th>imagem</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="produto : ${listaProdutos}">
-								<td th:text="${produto.id}"></td>
-								<td th:text="${produto.nome}"></td>
-								<td th:text="${produto.preco}"></td>
-								<td th:text="${produto.quantidade}"></td>
-								<td th:text="${produto.status}"></td>
-								<td th:text="${produto.estrelas}"></td>
-								<td th:text="${produto.descricao}"></td>
-								<td><img
-									th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}"
-									width="100" /></td>
+							<tr th:each="funcionario : ${listarFuncionario}">
+								<td th:text="${funcionario.id}"></td>
+								<td th:text="${funcionario.nome}"></td>
+								<td th:text="${funcionario.email}"></td>
+								<td th:text="${funcionario.cargo}"></td>
+								<td th:text="${funcionario.status}"></td>
 
 								<td colspan="2"><a class="btn btn-info btn-sm"
-									th:href="@{/administrativo/editar/{id}(id=${produto.id})}"
+									th:href="@{/administrativo/editar/funcionario/{id}(id=${funcionario.id})}"
 									role="button"> <span class="oi oi-brush" title="Editar"
 										aria-hidden="true"></span>
 								</a> <a class="btn btn-info btn-sm"
-									th:href="@{/administrativo/inativar/{id}(id=${produto.id})}"
+									th:href="@{/administrativo/inativar/funcionario/{id}(id=${funcionario.id})}"
 									role="button"> <span class="oi oi-circle-x"
 										title="Ativar/Inativar" aria-hidden="true"></span>
 								</a>
