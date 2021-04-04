@@ -15,8 +15,15 @@ public class DetalhesController {
 	private ProdutoRepository produtoRepository;
 
 	@GetMapping("/loja/detalhes")
-	public ModelAndView cadastrar(Produto produto) {
+	public ModelAndView detalhes(Produto produto) {
 		ModelAndView mv = new ModelAndView("/loja/detalhes");
+		mv.addObject("produto", produto);
+		return mv;
+	}
+	
+	@GetMapping("/loja/teste")
+	public ModelAndView teste(Produto produto) {
+		ModelAndView mv = new ModelAndView("/loja/teste");
 		mv.addObject("produto", produto);
 		return mv;
 	}
