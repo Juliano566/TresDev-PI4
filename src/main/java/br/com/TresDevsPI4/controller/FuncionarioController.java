@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.TresDevsPI4.model.Categoria;
 import br.com.TresDevsPI4.model.Funcionario;
@@ -22,24 +23,30 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 
+	@GetMapping("/teste")
+	public ModelAndView teste(Funcionario funcionario) {
+		ModelAndView mv = new ModelAndView("/fragments/layoutAdm");
+		mv.addObject("funcionario", funcionario);
+		return mv;
+	}
+
 	@GetMapping("/administrativo/funcionario/cadastrar")
 	public ModelAndView cadastrar(Funcionario funcionario) {
-		ModelAndView mv = new ModelAndView("/administrativo/cadastrarFuncionario");
+		ModelAndView mv = new ModelAndView("/administrativo/funcionario/cadastrarFuncionario");
 		mv.addObject("funcionario", funcionario);
 		return mv;
 	}
 
 	@GetMapping("/administrativo/funcionario/listar")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("/administrativo/listarFuncionario");
+		ModelAndView mv = new ModelAndView("/administrativo/funcionario/listarFuncionario");
 		mv.addObject("listarFuncionario", funcionarioRepository.findAll());
 		return mv;
 	}
 
 	@GetMapping("/administrativo/funcionario/listar/{numeroPagina}/{qtdePagina}")
-	public ModelAndView obterFuncionarioPaginada(@PathVariable int numeroPagina,
-			@PathVariable int qtdePagina) {
-		ModelAndView mv = new ModelAndView("/administrativo/listarFuncionario");
+	public ModelAndView obterFuncionarioPaginada(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
+		ModelAndView mv = new ModelAndView("/administrativo/funcionario/listarFuncionario");
 		if (qtdePagina >= 10)
 			qtdePagina = 10;
 		Pageable page = PageRequest.of(numeroPagina, qtdePagina);
@@ -54,13 +61,15 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/administrativo/salvar/funcionario")
-	public ModelAndView salvar(Funcionario funcionario, BindingResult result) {
-		if (result.hasErrors()) {
-			return cadastrar(funcionario);
-
+	public ModelAndView salvar(Funcionario funcionario, BindingResult result, RedirectAttributes ra) {
+		try {
+			funcionarioRepository.save(funcionario);
+			return cadastrar(new Funcionario());
+		} catch (Exception e) {
+			ModelAndView mv = new ModelAndView("/administrativo/funcionario/cadastrarFuncionario");
+			ra.addFlashAttribute("mensagem", "Email invalido");
+			return mv;
 		}
-		funcionarioRepository.save(funcionario);
-		return cadastrar(new Funcionario());
 	}
 
 	@GetMapping("/administrativo/inativar/funcionario/{id}")

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import br.com.TresDevsPI4.model.Funcionario;
 
-
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer>  {
-	
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
+
 	@Query(nativeQuery = true, value = "select * from funcionario where status = true")
 	public List<Funcionario> buscarTrue();
-	
+
+	public Funcionario findByEmailAndSenha(String email, String senha);
 
 }

@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
 import br.com.TresDevsPI4.model.Produto;
 import br.com.TresDevsPI4.repositories.ProdutoRepository;
 
@@ -46,29 +45,31 @@ import br.com.TresDevsPI4.repositories.ProdutoRepository;
 public class ProdutoController {
 
 	// auterar para caminho absoluto real da maquina
-	private static String caminhoImagens = "C:/FACULDADE/SENAC_QUARTO SEMESTRE/PROJETO INTEGRADOR/TresDev-PI4/src/main/resources/static/image/";
+	private static String caminhoImagens = "C:/Users/Julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
+
 	@GetMapping("/administrativo")
-	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView("/administrativo/login");
-		
+	public ModelAndView login(HttpSession session) {
+		if (!session.equals(null)) {
+			ModelAndView mv = new ModelAndView("/administrativo/login");
+			return mv;
+		}
+		ModelAndView mv = new ModelAndView("/administrativo2");
 		return mv;
 	}
 
 	@GetMapping("/administrativo/cadastro")
 	public ModelAndView cadastrar(Produto produto) {
-		ModelAndView mv = new ModelAndView("/administrativo/cadastro");
+		ModelAndView mv = new ModelAndView("/administrativo/produto/cadastro");
 		mv.addObject("produto", produto);
 		return mv;
 	}
-	
 
 	@GetMapping("/administrativo/lista")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("/administrativo/lista");
+		ModelAndView mv = new ModelAndView("/administrativo/produto/lista");
 		mv.addObject("listaProdutos", produtoRepository.findAll());
 		return mv;
 	}
@@ -117,21 +118,18 @@ public class ProdutoController {
 		return cadastrar(new Produto());
 	}
 
-	
-	
 	@GetMapping("/administrativo/mostrarImagens/{imagem}")
 	@ResponseBody
-	public byte[] retornarImagem (@PathVariable("imagem") String imagem) throws IOException {
-		//System.out.println(imagem);
-		File imagemarquivo = new File(caminhoImagens+imagem);
-		if(imagem!= null ||imagem.trim().length()>0) {
-		return Files.readAllBytes(imagemarquivo.toPath());
-	}
-		
+	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
+		// System.out.println(imagem);
+		File imagemarquivo = new File(caminhoImagens + imagem);
+		if (imagem != null || imagem.trim().length() > 0) {
+			return Files.readAllBytes(imagemarquivo.toPath());
+		}
+
 		return null;
-}
-	
-	
+	}
+
 	@GetMapping("/administrativo/inativar/{id}")
 	public ModelAndView inativar(@PathVariable("id") int id) {
 		Optional<Produto> produto = produtoRepository.findById((int) id);
@@ -150,12 +148,34 @@ public class ProdutoController {
 		return listar();
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@GetMapping("/administrativo/adicionar/{id}")
+	public ModelAndView adicionarUm(@PathVariable("id") int id) {
+		Optional<Produto> produto = produtoRepository.findById((int) id);
+
+		produto.get().setQuantidade(produto.get().getQuantidade() + 1);
+
+		produtoRepository.save(produto.get());
+		return listarEstoque();
+
+	}
+
+	@GetMapping("/administrativo/remover/{id}")
+	public ModelAndView removerUm(@PathVariable("id") int id) {
+		Optional<Produto> produto = produtoRepository.findById((int) id);
+
+		produto.get().setQuantidade(produto.get().getQuantidade() - 1);
+
+		produtoRepository.save(produto.get());
+		return listarEstoque();
+
+	}
+
+	@GetMapping("/administrativo/estoque")
+	public ModelAndView listarEstoque() {
+		ModelAndView mv = new ModelAndView("/administrativo/produto/listaEstoquista");
+		mv.addObject("listaProdutos", produtoRepository.findAll());
+		return mv;
+	}
+
 }
