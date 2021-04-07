@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.TresDevsPI4.model.Funcionario;
 import br.com.TresDevsPI4.repositories.FuncionarioRepository;
+import br.com.TresDevsPI4.services.Util;
 
 @Controller
 public class LoginController {
@@ -26,8 +27,12 @@ public class LoginController {
 
 	@PostMapping("/efetuarLogin")
 	// Buscar no banco de dados funcionario com email e senha
-	public String efetuarLogin(Funcionario funcionario, RedirectAttributes ra, HttpSession session) {
-		funcionario = this.fun.findByEmailAndSenha(funcionario.getEmail(), funcionario.getSenha());
+	public String efetuarLogin(Funcionario funcionario, RedirectAttributes ra, HttpSession session)
+	
+	{
+		System.out.println(Util.md5(funcionario.getSenha()));
+		funcionario = this.fun.findByEmailAndSenha(funcionario.getEmail(), Util.md5(funcionario.getSenha()));
+		
 
 		if (funcionario != null) {
 			// Guarda sessao o objeto usuario

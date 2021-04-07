@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.TresDevsPI4.model.Categoria;
 import br.com.TresDevsPI4.model.Funcionario;
 import br.com.TresDevsPI4.repositories.FuncionarioRepository;
+import br.com.TresDevsPI4.services.Util;
 
 @Controller
 public class FuncionarioController {
@@ -63,6 +64,9 @@ public class FuncionarioController {
 	@PostMapping("/administrativo/salvar/funcionario")
 	public ModelAndView salvar(Funcionario funcionario, BindingResult result, RedirectAttributes ra) {
 		try {
+			String senha =funcionario.getSenha();
+			senha =Util.md5(senha);
+			funcionario.setSenha(senha);
 			funcionarioRepository.save(funcionario);
 			return cadastrar(new Funcionario());
 		} catch (Exception e) {
