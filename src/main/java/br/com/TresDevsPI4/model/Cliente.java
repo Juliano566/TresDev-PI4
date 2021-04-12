@@ -1,16 +1,16 @@
 package br.com.TresDevsPI4.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+
 
 @Entity
-public class Funcionario implements Serializable {
+public class Cliente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -18,19 +18,19 @@ public class Funcionario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nome;
-	
 	private String email;
-	private String cargo;
+	private String endereco;
 	private String senha;
-	private boolean status; 
+	private String cpf;
+	private boolean status = true; 
 	
-	public Funcionario() {
+	public Cliente() {
 	}
 
-	public Funcionario(String nome, String email, String cargo, String senha, boolean status) {
+	public Cliente(String nome, String email, String endereco, String senha, boolean status) {
 		this.nome = nome;
 		this.email = email;
-		this.cargo = cargo;
+		this.endereco = endereco;
 		this.senha = senha;
 		this.status = status;
 	}
@@ -59,12 +59,12 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	public String getCargo() {
-		return cargo;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getSenha() {
@@ -86,11 +86,21 @@ public class Funcionario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", cargo=" + cargo + ", senha=" + senha
-				+ "]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", senha=" + senha
+				+ ", cpf=" + cpf + "]";
 	}
 	
 	
