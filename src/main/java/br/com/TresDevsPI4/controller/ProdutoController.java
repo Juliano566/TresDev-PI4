@@ -45,7 +45,7 @@ import br.com.TresDevsPI4.repositories.ProdutoRepository;
 public class ProdutoController {
 
 	// auterar para caminho absoluto real da maquina
-	private static String caminhoImagens = "C:\\Users\\renan.smaciel\\Pictures";
+	private static String caminhoImagens = "C:/Users/Julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
