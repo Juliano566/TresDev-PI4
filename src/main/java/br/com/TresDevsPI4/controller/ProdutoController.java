@@ -45,7 +45,8 @@ import br.com.TresDevsPI4.repositories.ProdutoRepository;
 public class ProdutoController {
 
 	// auterar para caminho absoluto real da maquina
-	private static String caminhoImagens = "C:/Users/Julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
+	//private static String caminhoImagens = "C:/Users/Julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
+	private static String caminhoImagens = "C:/FACULDADE/SENAC_QUARTO SEMESTRE/PROJETO INTEGRADOR/TresDev-PI4/src/main/resources/static/image/";
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
@@ -91,8 +92,15 @@ public class ProdutoController {
 	}
 
 	@PostMapping("/administrativo/salvar/imagens")
-	public ModelAndView salvarI(Produto produto, BindingResult result, @RequestParam("file") MultipartFile arquivo) {
-
+	public ModelAndView salvarI(Produto produto, BindingResult result, 
+			@RequestParam("file") MultipartFile arquivo,
+			@RequestParam("file2") MultipartFile file2,
+			@RequestParam("file3") MultipartFile file3,
+			@RequestParam("file4") MultipartFile file4 
+			) {
+		
+		System.out.println(file2.getSize());	
+		
 		if (result.hasErrors()) {
 			return cadastrar(produto);
 
@@ -110,6 +118,37 @@ public class ProdutoController {
 				produto.setFoto1(String.valueOf(produto.getId()) + arquivo.getOriginalFilename());
 				produtoRepository.save(produto);
 			}
+			
+			if (!file2.isEmpty()) {
+				byte[] bytes = file2.getBytes();
+				Path caminho = Paths
+						.get(caminhoImagens + String.valueOf(produto.getId()) + file2.getOriginalFilename());
+				Files.write(caminho, bytes);
+
+				produto.setFoto2(String.valueOf(produto.getId()) + file2.getOriginalFilename());
+				produtoRepository.save(produto);
+			}
+			
+			if (!file3.isEmpty()) {
+				byte[] bytes = file3.getBytes();
+				Path caminho = Paths
+						.get(caminhoImagens + String.valueOf(produto.getId()) + file3.getOriginalFilename());
+				Files.write(caminho, bytes);
+
+				produto.setFoto3(String.valueOf(produto.getId()) + file3.getOriginalFilename());
+				produtoRepository.save(produto);
+			}
+			
+			if (!file4.isEmpty()) {
+				byte[] bytes = file4.getBytes();
+				Path caminho = Paths
+						.get(caminhoImagens + String.valueOf(produto.getId()) + file4.getOriginalFilename());
+				Files.write(caminho, bytes);
+
+				produto.setFoto4(String.valueOf(produto.getId()) + file4.getOriginalFilename());
+				produtoRepository.save(produto);
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -117,7 +156,9 @@ public class ProdutoController {
 		produtoRepository.save(produto);
 		return cadastrar(new Produto());
 	}
-
+	
+	
+	
 	@GetMapping("/administrativo/mostrarImagens/{imagem}")
 	@ResponseBody
 	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {

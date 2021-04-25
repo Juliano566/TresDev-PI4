@@ -42,8 +42,21 @@
 
 					<li class="nav-item"><a class="nav-link" href="#">Contato</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+
+					<div th:if="${session.usuarioLogado.nome == null}">
+						<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+					</div>
+
+					<div th:if="${session.usuarioLogado.nome != null}">
+						<li class="nav-item"><a class="nav-link" href="/login">Perfil</a></li>
+					</div>
+
+					<div th:if="${session.usuarioLogado.nome != null}">
+						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+					</div>
+
 				</ul>
+
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search"
 						placeholder="Pesquisar" aria-label="Pesquisar">
@@ -60,7 +73,7 @@
 		<div class="row">
 
 			<div class="col-lg-3">
-
+				<a>Usuario :</a> <span th:text="${session.usuarioLogado.nome}"></span>
 				<h1 class="my-4">Categorias</h1>
 				<div class="list-group">
 					<a href="#" class="list-group-item">HARDWARE</a> <a href="#"
