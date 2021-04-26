@@ -5,19 +5,20 @@
 <meta charset="utf-8">
 </head>
 
-  <link href="../../static/css/style.css" rel="stylesheet">"
- 	<!-- importação do bootstrap min.css -->
-  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
- 
+<link href="../../static/css/style.css" rel="stylesheet">
+<!-- importação do bootstrap min.css -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+
 
 <body>
 
 
-<!-- Teste top page  -->
+	<!-- Teste top page  -->
 
 
-	<!-- Navigation -->
+	<!-- Navigation 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		style="height: 90px;">
 		<div class="container">
@@ -47,78 +48,78 @@
 			</div>
 		</div>
 	</nav>
+-->
+
+	<div th:replace="layout :: navlinks"></div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+	<!-- Teste top page  -->
 
 
-<!-- Teste top page  -->
-
-
-				<div class="container_cad" id="cadastro">
-					<form action="/cliente/salvar"
-						enctype="multipart/form-data" th:object="${cliente}"
-						method="POST">
-						<div class="nother">
-							<div class="form-group col-md-6">
-								<label for="nome">Nome</label> <input type="text"
-									class="form-control" id="nome" placeholder="Nome Completo "
-									autofocus="autofocus" th:field="*{nome}" value="" required  minlength="5" />
-								<div class="invalid-feedback"></div>
-							</div>
-						</div>
-						<div th:text="${mensagem}" th:if="${mensagem != null}"></div>
-
-					
-
-						<div th:if="${id == null}">
-							<div class="form-">
-								<div class="form-group col-md-6">
-									<label for="email">Email</label> <input type="text"
-										class="form-control" id="email" placeholder="email"
-										autofocus="autofocus" th:field="*{email}" name="email"
-										value="" required />
-									<div class="invalid-feedback"></div>
-								</div>
-							</div>
-						</div>
-
-						
-
-						<div class="">
-							<div class="form-group col-md-3">
-								<label for="senha">Senha</label> <input type="password"
-									class="form-control" id="senha" placeholder="senha"
-									autofocus="autofocus" th:field="*{senha}" name="senha" value=""
-									required minlength="3" />
-								<div class="invalid-feedback"></div>
-							</div>
-						</div>
-						
-						
-						<div class="">
-							<div class="form-group col-md-4">
-								<label for="nome">CPF</label> <input type="text"
-									class="form-control" id="nome" placeholder="CPF"
-									autofocus="autofocus" th:field="*{cpf}" value="" required  maxlength="11" />
-								<div class="invalid-feedback"></div>
-							</div>
-						</div>
-						
-						
-
-						<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
-						<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-					</form>
+	<div class="container_cad" id="cadastro">
+		<form action="/cliente/salvar" enctype="multipart/form-data"
+			th:object="${cliente}" method="POST">
+			<div class="nother">
+				<div class="form-group col-md-6">
+					<label for="nome">Nome</label> <input type="text"
+						class="form-control" id="nome" placeholder="Nome Completo"
+						autofocus="autofocus" th:field="*{nome}" value="" required
+						minlength="5" />
+					<div class="invalid-feedback"></div>
 				</div>
-		
-	
-	
+			</div>
+			<div th:text="${mensagem}" th:if="${mensagem != null}"></div>
+
+
+			<div class="form-">
+				<div class="form-group col-md-6">
+					<label for="email">Email</label> <input type="text"
+						class="form-control" id="email" placeholder="email"
+						autofocus="autofocus" th:field="*{email}" name="email" value=""
+						required />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+
+
+
+			<div class="">
+				<div class="form-group col-md-3">
+					<label for="senha">Senha</label> <input type="password"
+						class="form-control" id="senha" placeholder="senha"
+						autofocus="autofocus" th:field="*{senha}" name="senha" value=""
+						required minlength="3" />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+
+
+			<div class="">
+				<div class="form-group col-md-4">
+					<label for="nome">CPF</label> <input type="text"
+						class="form-control" id="nome" placeholder="CPF"
+						autofocus="autofocus" th:field="*{cpf}" value="" required
+						minlength="11" maxlength="11" />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+
+
+
+			<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
+			<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+		</form>
+	</div>
+
+
+
 </body>
 
 </html>

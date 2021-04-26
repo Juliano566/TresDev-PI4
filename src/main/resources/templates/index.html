@@ -17,55 +17,24 @@
 
 <!-- importação do css custom -->
 <link href="css/shop-homepage.css" rel="stylesheet">
+  <!-- importação do css custom -->
+  <link href="../../css/estilosDetalhes.css" rel="stylesheet">
+  
+    <!-- importação do css custom -->
+  <link href="../../css/shop-homepage.css" rel="stylesheet">
+  
+      <!-- importação do css custom -->
+  <link href="../../css/owl.carousel.css" rel="stylesheet">
+  
+        <!-- importação do css custom -->
+  <link href="../../css/responsive.css" rel="stylesheet">
 
 </head>
 
 <body>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		style="height: 150px;">
-		<div class="container">
-			<a class="navbar-brand" href="/index">-=TresDev=-</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
-							<span class="sr-only">(current)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Carrinho</a>
-					</li>
-
-					<li class="nav-item"><a class="nav-link" href="#">Contato</a>
-					</li>
-
-					<div th:if="${session.usuarioLogado.nome == null}">
-						<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-					</div>
-
-					<div th:if="${session.usuarioLogado.nome != null}">
-						<li class="nav-item"><a class="nav-link" href="/login">Perfil</a></li>
-					</div>
-
-					<div th:if="${session.usuarioLogado.nome != null}">
-						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
-					</div>
-
-				</ul>
-
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="Pesquisar" aria-label="Pesquisar">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-				</form>
-			</div>
-		</div>
-	</nav>
-
+	<div th:replace="layout :: navlinks"></div>
 	<!-- Page Content -->
 	<div class="container mt-5 pt-5">
 
@@ -73,7 +42,7 @@
 		<div class="row">
 
 			<div class="col-lg-3">
-				<a>Usuario :</a> <span th:text="${session.usuarioLogado.nome}"></span>
+			<!--  	<a>Usuario :</a> <span th:text="${session.usuarioLogado.nome}"></span> -->
 				<h1 class="my-4">Categorias</h1>
 				<div class="list-group">
 					<a href="#" class="list-group-item">HARDWARE</a> <a href="#"

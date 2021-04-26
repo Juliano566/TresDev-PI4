@@ -30,19 +30,19 @@ public class indexController {
 	@RequestMapping(path = { "/index", "/" })
 	public ModelAndView index(HttpSession session, Cliente cliente) {
 		ModelAndView mv = new ModelAndView("/index");
-		System.out.println("verfica " + teste);
+		//System.out.println("verfica " + teste);
 		
 		if (!teste) {
 			session.setAttribute("usuarioLogado", cliente);
 			mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
-			System.out.println("111111111111111");
+			//System.out.println("111111111111111");
 			teste = true;
-			System.out.println("verfica " + teste);
+			//System.out.println("verfica " + teste);
 			return mv;
 		}
 
 		mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
-		System.out.println("22222222222");
+		//System.out.println("22222222222");
 		return mv;
 
 	}

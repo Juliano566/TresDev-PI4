@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{cliente/layoutCli}">
+<head>
+<title>Editar CLiente</title>
+<meta charset="utf-8">
+</head>
+
+
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<section class="layout-content">
+		<br> <br>
+			<div class="page-header">
+				<nav class="navbar navbar-expand-md navbar-top bg-light">
+					<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+						<ul class="navbar-nav">
+							<li class="nav-item active"><i class="oi oi-caret-right"></i>
+								<span>Editar</span></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+
+
+			<div class="container" id="cadastro">
+				<form action="/cliente/salvar"
+					enctype="multipart/form-data" th:object="${cliente}" method="POST">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="nome">Nome</label> <input type="text"
+								class="form-control" id="nome" placeholder="Nome Funcionario"
+								autofocus="autofocus" th:field="*{nome}" value="" required
+								minlength="5" />
+							<div class="invalid-feedback"></div>
+						</div>
+					</div>
+
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="email">Email</label> <input type="text"
+								class="form-control" id="email" placeholder="email"
+								autofocus="autofocus" th:field="*{email}" name="email"
+								value="" required />
+							<div class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cpf">Cpf</label> <input type="text"
+								class="form-control" id="cpf" placeholder="cpf"
+								autofocus="autofocus" th:field="*{cpf}" value="" required
+								minlength="11" maxlength="11"/>
+							<div class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="senha">Senha</label> <input type="password"
+								class="form-control" id="senha" placeholder="senha"
+								autofocus="autofocus" name="senha" value="" required
+								minlength="3" />
+							<div class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
+					<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+				</form>
+			</div>
+		</section>
+</body>
+</html>

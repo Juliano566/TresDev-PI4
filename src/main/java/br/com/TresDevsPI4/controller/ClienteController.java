@@ -33,7 +33,7 @@ public class ClienteController {
 	@GetMapping("/cliente/cadastrar")
 	public ModelAndView cadastrar(Cliente cliente) {
 		ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
-		mv.addObject("Cliente", cliente);
+		mv.addObject("cliente", cliente);
 		return mv;
 	}
 //done
@@ -57,8 +57,17 @@ public class ClienteController {
 	@GetMapping("/cliente/editar/cliente/{id}")
 	public ModelAndView editar(@PathVariable("id") int id) {
 		Optional<Cliente> cliente = clienteRepository.findById((int) id);
-		return cadastrar(cliente.get());
+		return editar2(cliente.get());
 	}
+	
+	@GetMapping("/cliente/editar")
+	public ModelAndView editar2(Cliente cliente) {
+		ModelAndView mv = new ModelAndView("/cliente/editarCliente");
+		mv.addObject("cliente", cliente);
+		return mv;
+	}
+	
+	
 //done
 	@PostMapping("/cliente/salvar")
 	public ModelAndView salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
@@ -67,7 +76,8 @@ public class ClienteController {
 			senha =Util.md5(senha);
 			cliente.setSenha(senha);
 			clienteRepository.save(cliente);
-			return cadastrar(new Cliente());
+			ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
+			return mv;
 		} catch (Exception e) {
 			ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
 			ra.addFlashAttribute("mensagem", "Email invalido");
