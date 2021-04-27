@@ -70,18 +70,17 @@ public class ClienteController {
 	
 //done
 	@PostMapping("/cliente/salvar")
-	public ModelAndView salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
+	public String salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
 		try {
 			String senha =cliente.getSenha();
 			senha =Util.md5(senha);
 			cliente.setSenha(senha);
+			
 			clienteRepository.save(cliente);
-			ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
-			return mv;
+			return "redirect:/cliente/cadastrar";
 		} catch (Exception e) {
-			ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
 			ra.addFlashAttribute("mensagem", "Email invalido");
-			return mv;
+			return "redirect:/cliente/cadastrarCliente";
 		}
 	}
 //done

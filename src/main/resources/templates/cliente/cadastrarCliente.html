@@ -110,22 +110,78 @@
 					<div class="invalid-feedback"></div>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="form-">
 				<div class="form-group col-md-6">
-					<label for="endereco">Endereço</label> <input type="text"
-						class="form-control" id="endereço" placeholder="Ex: Rua caxingui"
-						autofocus="autofocus" th:field="*{endereco}" name="endereco" value=""
+					<label for="endereco">Cidade</label> <input type="text"
+						class="form-control" id="cidade" placeholder="Ex: Rua caxingui"
+						autofocus="autofocus" th:field="*{cidade}" name="cidade" value=""
 						required />
 					<div class="invalid-feedback"></div>
 				</div>
 			</div>
 
 
+			<div class="form-">
+				<div class="form-group col-md-6">
+					<label for="bairro">Logradouro</label> <input type="text"
+						class="form-control" id="bairro"
+						placeholder="logradouro sem numero" name="logradouro" value="" />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
 
-			<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
-			<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+
+			<div class="form-">
+				<div class="form-group col-md-6">
+					<label for="endereco">Numero</label> <input type="text"
+						class="form-control" id="numero" placeholder="123"
+						autofocus="autofocus" th:field="*{numero}" name="numero" value=""
+						required />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+
+
+			<div class="form-">
+				<div class="form-group col-md-6">
+					<label for="complemento">Complemento</label> <input type="text"
+						class="form-control" id="complemento"
+						placeholder="fundos, casa, AP. 102, .." name="complemento"
+						value="" />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+
+
+			<div class="form-">
+				<div class="form-group col-md-6">
+					<label for="bairro">Bairro</label> <input type="text"
+						class="form-control" id="bairro" name="bairro" value="" />
+					<div class="invalid-feedback"></div>
+				</div>
+
+
+				<div class="form-">
+					<div class="form-group col-md-6">
+						<label for="cep">CEP</label> <input type="text"
+							class="form-control" id="cep"  name="cep"
+							value="" />
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+				<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 		</form>
 	</div>
 

@@ -17,11 +17,17 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	private String nome;
 	private String email;
 	private String endereco;
 	private String numero_casa;
 	private Integer cep;
+	private String cidade; 
+	private String logradouro;
+	private String numero;
+	private String complemento;
+	private String bairro;
 	private String senha;
 	private String cpf;
 	private boolean status = true; 
@@ -113,14 +119,57 @@ public class Cliente implements Serializable {
 		this.cpf = cpf;
 	}
 	
-	
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", senha=" + senha
-				+ ", cpf=" + cpf + ", cep=" + cep + ", numero_casa=" + numero_casa +"]";
+		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", numero_casa="
+				+ numero_casa + ", cep=" + cep + ", cidade=" + cidade + ", logradouro=" + logradouro + ", numero="
+				+ numero + ", complemento=" + complemento + ", bairro=" + bairro + ", senha=" + senha + ", cpf=" + cpf
+				+ ", status=" + status + "]";
 	}
 
+	
+	
+	
 
 	
 	
