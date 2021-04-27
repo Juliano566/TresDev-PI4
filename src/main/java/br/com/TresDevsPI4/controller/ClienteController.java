@@ -37,12 +37,19 @@ public class ClienteController {
 		return mv;
 	}
 //done
-	@GetMapping("cliente/listar")
+	@GetMapping("/cliente/listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("/cliente/listarCliente");
 		mv.addObject("listarCliente", clienteRepository.findAll());
 		return mv;
 	}
+	
+	@GetMapping("/cliente/perfil")
+	public ModelAndView perfil() {
+		ModelAndView mv = new ModelAndView("/cliente/layoutCLi");
+		return mv;
+	}
+	
 //done 
 	@GetMapping("/cliente/listar/{numeroPagina}/{qtdePagina}")
 	public ModelAndView obterClientePaginada(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {

@@ -22,7 +22,7 @@
 					</div>
 				</nav>
 			</div>
-
+			<div th:field="${session.usuarioLogado.id}"></div>
 
 			<div class="container" id="cadastro">
 				<form action="/cliente/salvar" enctype="multipart/form-data"
@@ -131,8 +131,8 @@
 						<div class="form-group col-md-6">
 							<label for="endereco">Bairro</label> <input type="text"
 								class="form-control" id="bairro" placeholder="Ex: Santo amaro"
-								autofocus="autofocus" th:field="*{bairro}"
-								name="bairro" value="" required />
+								autofocus="autofocus" th:field="*{bairro}" name="bairro"
+								value="" required />
 							<div class="invalid-feedback"></div>
 						</div>
 					</div>
