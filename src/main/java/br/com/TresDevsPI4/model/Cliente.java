@@ -20,6 +20,8 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String email;
 	private String endereco;
+	private String numero_casa;
+	private Integer cep;
 	private String senha;
 	private String cpf;
 	private boolean status = true; 
@@ -66,7 +68,23 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	
+	public String getNumero_casa() {
+		return numero_casa;
+	}
 
+	public void setNumero_casa(String numero_casa) {
+		this.numero_casa = numero_casa;
+	}
+
+	public Integer getCep() {
+		return cep;
+	}
+
+	public void setCep(Integer cep) {
+		this.cep = cep;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}
@@ -100,8 +118,10 @@ public class Cliente implements Serializable {
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", senha=" + senha
-				+ ", cpf=" + cpf + "]";
+				+ ", cpf=" + cpf + ", cep=" + cep + ", numero_casa=" + numero_casa +"]";
 	}
+
+
 	
 	
 	
