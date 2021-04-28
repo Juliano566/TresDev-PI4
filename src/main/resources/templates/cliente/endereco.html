@@ -2,11 +2,78 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{cliente/layoutCli}">
 <head>
-<title>Cadastrar Endereço</title>
+<title>Editar Cliente</title>
 <meta charset="utf-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- Adicionando Javascript -->
+<script>
+	function limpa_formulário_cep() {
+		//Limpa valores do formulário de cep.
+		document.getElementById('rua').value = ("");
+		document.getElementById('bairro').value = ("");
+		document.getElementById('cidade').value = ("");
+
+	}
+
+	function meu_callback(conteudo) {
+		if (!("erro" in conteudo)) {
+			//Atualiza os campos com os valores.
+			document.getElementById('rua').value = (conteudo.logradouro);
+			document.getElementById('bairro').value = (conteudo.bairro);
+			document.getElementById('cidade').value = (conteudo.localidade);
+		} //end if.
+		else {
+			//CEP não Encontrado.
+			limpa_formulário_cep();
+			alert("CEP não encontrado.");
+		}
+	}
+
+	function pesquisacep(valor) {
+
+		//Nova variável "cep" somente com dígitos.
+		var cep = valor.replace(/\D/g, '');
+
+		//Verifica se campo cep possui valor informado.
+		if (cep != "") {
+
+			//Expressão regular para validar o CEP.
+			var validacep = /^[0-9]{8}$/;
+
+			//Valida o formato do CEP.
+			if (validacep.test(cep)) {
+
+				//Preenche os campos com "..." enquanto consulta webservice.
+				document.getElementById('rua').value = "...";
+				document.getElementById('bairro').value = "...";
+				document.getElementById('cidade').value = "...";
+
+				//Cria um elemento javascript.
+				var script = document.createElement('script');
+
+				//Sincroniza com o callback.
+				script.src = 'https://viacep.com.br/ws/' + cep
+						+ '/json/?callback=meu_callback';
+
+				//Insere script no documento e carrega o conteúdo.
+				document.body.appendChild(script);
+
+			} //end if.
+			else {
+				//cep é inválido.
+				limpa_formulário_cep();
+				alert("Formato de CEP inválido.");
+			}
+		} //end if.
+		else {
+			//cep sem valor, limpa formulário.
+			limpa_formulário_cep();
+		}
+	};
+</script>
 </head>
-
-
 <body>
 
 	<section class="layout-content" layout:fragment="corpo">
@@ -23,24 +90,28 @@
 			</nav>
 		</div>
 
+
 		<div class="container" id="cadastro">
 			<form action="/cliente/endereco/salvar" enctype="multipart/form-data"
 				th:object="${endereco}" method="POST">
 
-				
-				<div class="form-row">
+
+
+				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="cep">CEP</label> <input type="text"
-							class="form-control" id="cep" th:field="*{cep}" name="cep" value="" />
+							class="form-control" id="cep" name="cep" size="10" maxlength="9"
+							onblur="pesquisacep(this.value);" th:field="*{cep}" value=""
+							required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
 
-				<div class="form-row">
+				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="endereco">Cidade</label> <input type="text"
-							class="form-control" id="cidade" placeholder="Ex: Rua caxingui"
+							class="form-control" id="cidade" placeholder=""
 							autofocus="autofocus" th:field="*{cidade}" name="cidade" value=""
 							required />
 						<div class="invalid-feedback"></div>
@@ -48,20 +119,28 @@
 				</div>
 
 
-				<div class="form-row">
+				<div class="form-">
 					<div class="form-group col-md-6">
-						<label for="bairro">Logradouro</label> <input type="text"
-							class="form-control" id="bairro"
-							placeholder="logradouro sem numero" name="logradouro" value="" />
+						<label for="bairro">Bairro</label> <input type="text"
+							class="form-control" id="bairro" th:field="*{bairro}"
+							name="bairro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
-
-				<div class="form-row">
+				<div class="form-">
 					<div class="form-group col-md-6">
-						<label for="endereco">Numero</label> <input type="text"
-							class="form-control" id="numero" placeholder="123"
+						<label for="rua">Rua</label> <input type="text"
+							class="form-control" id="rua" th:field="*{logradouro}"
+							placeholder="" name="logradouro" value="" required />
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+
+				<div class="form-">
+					<div class="form-group col-md-6">
+						<label for="endereco">Numero</label> <input type="number"
+							class="form-control" id="numero" placeholder=""
 							autofocus="autofocus" th:field="*{numero}" name="numero" value=""
 							required />
 						<div class="invalid-feedback"></div>
@@ -69,30 +148,25 @@
 				</div>
 
 
-				<div class="form-row">
+				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="complemento">Complemento</label> <input type="text"
 							class="form-control" id="complemento"
-							placeholder="fundos, casa, AP. 102, .." name="complemento"
-							value="" />
+							placeholder="fundos, casa, AP. 102, .." th:field="*{complemento}"
+							name="complemento" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
 
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" name="bairro" value="" />
-						<div class="invalid-feedback"></div>
-					</div>
-				</div>
+				<input type="hidden" id="cliente" name="cliente"
+					th:value="${session.usuarioLogado.id}" /> <input type="hidden"
+					id="id" name="id" th:field="*{id}" />
 
-
-				<input type="hidden" id="id" name="id" th:field="*{id}" value="" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 		</div>
 	</section>
 </body>
+
 </html>

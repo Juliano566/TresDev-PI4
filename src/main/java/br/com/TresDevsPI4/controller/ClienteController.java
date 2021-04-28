@@ -22,6 +22,7 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+
 //done 
 	@GetMapping("/teste2")
 	public ModelAndView teste(Cliente cliente) {
@@ -29,6 +30,14 @@ public class ClienteController {
 		mv.addObject("cliente", cliente);
 		return mv;
 	}
+	
+	@GetMapping("/cep")
+	public ModelAndView cep(Cliente cliente) {
+		ModelAndView mv = new ModelAndView("/cep");
+		mv.addObject("cliente", cliente);
+		return mv;
+	}
+
 //done
 	@GetMapping("/cliente/cadastrar")
 	public ModelAndView cadastrar(Cliente cliente) {
@@ -36,6 +45,7 @@ public class ClienteController {
 		mv.addObject("cliente", cliente);
 		return mv;
 	}
+
 //done
 	@GetMapping("/cliente/listar")
 	public ModelAndView listar() {
@@ -43,13 +53,13 @@ public class ClienteController {
 		mv.addObject("listarCliente", clienteRepository.findAll());
 		return mv;
 	}
-	
+
 	@GetMapping("/cliente/perfil")
 	public ModelAndView perfil() {
 		ModelAndView mv = new ModelAndView("/cliente/layoutCLi");
 		return mv;
 	}
-	
+
 //done 
 	@GetMapping("/cliente/listar/{numeroPagina}/{qtdePagina}")
 	public ModelAndView obterClientePaginada(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
@@ -60,36 +70,36 @@ public class ClienteController {
 		mv.addObject("listarCliente", clienteRepository.findAll(page));
 		return mv;
 	}
+
 //done
 	@GetMapping("/cliente/editar/cliente/{id}")
 	public ModelAndView editar(@PathVariable("id") int id) {
 		Optional<Cliente> cliente = clienteRepository.findById((int) id);
 		return editar2(cliente.get());
 	}
-	
+
 	@GetMapping("/cliente/editar")
 	public ModelAndView editar2(Cliente cliente) {
 		ModelAndView mv = new ModelAndView("/cliente/editarCliente");
 		mv.addObject("cliente", cliente);
 		return mv;
 	}
-	
-	
+
 //done
 	@PostMapping("/cliente/salvar")
 	public String salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
 		try {
-			String senha =cliente.getSenha();
-			senha =Util.md5(senha);
-			cliente.setSenha(senha);
-			
-			clienteRepository.save(cliente);
-			return "redirect:/cliente/cadastrar";
+				String senha = cliente.getSenha();
+				senha = Util.md5(senha);
+				cliente.setSenha(senha);
+				clienteRepository.save(cliente);
+				return "redirect:/";
 		} catch (Exception e) {
-			ra.addFlashAttribute("mensagem", "Email invalido");
-			return "redirect:/cliente/cadastrarCliente";
+			ra.addFlashAttribute("mensagem", "Dados Invalidos");
+			return "redirect:/cliente/cadastrar";
 		}
 	}
+
 //done
 	@GetMapping("/cliente/inativar/{id}")
 	public ModelAndView inativar(@PathVariable("id") int id) {

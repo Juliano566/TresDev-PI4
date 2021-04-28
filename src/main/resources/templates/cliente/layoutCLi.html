@@ -38,34 +38,46 @@
 					</a></li>
 				</ul>
 
+				<div th:if="${session.usuarioLogado.nome != null}">
+					<ul class="nav nav-pills">
+						<li class="nav-item"><span class="nav-link active">Dados</span></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/cliente/editar/cliente/{id}(id=${session.usuarioLogado.id})}">
+								<i class="oi oi-spreadsheet"></i> <span>Editar</span>
+						</a></li>
+
+						<li class="nav-item"><a class="nav-link" href="#"> <i
+								class="oi oi-spreadsheet"></i> <span>Historico</span>
+						</a></li>
+
+
+					</ul>
+
+					<ul class="nav nav-pills">
+						<li class="nav-item"><span class="nav-link active">Endereço</span></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/cliente/endereco/cadastrar"> <i class="oi oi-plus"></i>
+								<span>Cadastrar</span>
+						</a></li>
+
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/cliente/listar/endereco/{id}(id=${session.usuarioLogado.id})}">
+								<i class="oi oi-spreadsheet"></i> <span>Listar</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+
+					</ul>
+				</div>
+				<div th:if="${session.usuarioLogado.nome == null}">
 				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Dados</span></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/cliente/editar/cliente/{id}(id=${session.usuarioLogado.id})}">
-							<i class="oi oi-spreadsheet"></i> <span>Editar</span>
-					</a></li>
+						<li class="nav-item"><span class="nav-link active">Cadastro</span></li>
+						<li class="nav-item"><a class="nav-link"
+							href="#">
+								<i class="oi oi-spreadsheet"></i> <span>Cadastrar</span>
+						</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="oi oi-spreadsheet"></i> <span>Historico</span>
-					</a></li>
-					
-
-				</ul>
-				
-				<ul class="nav nav-pills">
-					<li class="nav-item"><span class="nav-link active">Endereço</span></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/cliente/endereco/cadastrar">
-							<i class="oi oi-plus"></i> <span>Cadastrar</span>
-					</a></li>
-
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="oi oi-spreadsheet"></i> <span>Listar</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
-
-				</ul>
-
+					</ul>
+				</div>
 			</nav>
 		</aside>
 

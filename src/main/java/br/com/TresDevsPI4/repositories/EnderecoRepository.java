@@ -12,7 +12,7 @@ import br.com.TresDevsPI4.model.Funcionario;
 @Repository
 public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 
-	@Query(nativeQuery = true, value = "select * from endereco where id = ?")
-	public List<Funcionario> buscarEndereco(Integer id);
+	@Query(nativeQuery = true, value = "select * from endereco where cliente = ?")
+	public List<Endereco> buscarEndereco(int id);
 	
 }

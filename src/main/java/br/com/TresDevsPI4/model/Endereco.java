@@ -23,13 +23,14 @@ public class Endereco implements Serializable {
 	private String complemento;
 	private String rua;
 	private String bairro;
-	private boolean status;
+	private boolean status = true;
 
 	public Endereco() {
 	}
 
-	public Endereco(Integer id, Integer cliente, Integer cep, String cidade, String logradouro, Integer numero, String complemento,
-			String rua, String bairro, boolean status) {
+	public Endereco(Integer id, Integer cliente, Integer cep, String cidade, String logradouro,
+			Integer numero, String complemento, String rua, String bairro, boolean status) {
+		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.cep = cep;
@@ -42,6 +43,12 @@ public class Endereco implements Serializable {
 		this.status = status;
 	}
 
+
+
+
+
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -49,12 +56,12 @@ public class Endereco implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public Integer getCliente() {
 		return cliente;
 	}
 
-	public void setCLiente(Integer cliente) {
+	public void setCliente(Integer cliente) {
 		this.cliente = cliente;
 	}
 
@@ -114,12 +121,21 @@ public class Endereco implements Serializable {
 		this.bairro = bairro;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
+	
+
 
 }

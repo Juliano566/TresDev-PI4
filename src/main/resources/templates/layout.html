@@ -53,7 +53,7 @@
 
 						<div th:if="${session.usuarioLogado.nome != null}">
 							<li class="nav-item"><a class="nav-link"
-								th:href="@{/cliente/editar/cliente/{id}(id=${session.usuarioLogado.id})}">Perfil</a></li>
+								href="/cliente/perfil">Perfil</a></li>
 						</div>
 
 						<div th:if="${session.usuarioLogado.nome != null}">

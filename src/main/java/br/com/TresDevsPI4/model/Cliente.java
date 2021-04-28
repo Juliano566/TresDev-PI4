@@ -1,37 +1,40 @@
 package br.com.TresDevsPI4.model;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
 public class Cliente implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	private String nome;
+	@Column(unique = true)
 	private String email;
 	private String endereco;
 	private String numero_casa;
-	private Integer cep;
-	private String cidade; 
+	private String cep;
+	private String cidade;
+	private String estado;
 	private String logradouro;
 	private String numero;
 	private String complemento;
 	private String bairro;
 	private String senha;
+	@Column(unique = true)
 	private String cpf;
-	private boolean status = true; 
-	
+	private boolean status = true;
+
 	public Cliente() {
 	}
 
@@ -74,7 +77,7 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
+
 	public String getNumero_casa() {
 		return numero_casa;
 	}
@@ -83,14 +86,14 @@ public class Cliente implements Serializable {
 		this.numero_casa = numero_casa;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
+
 	public String getSenha() {
 		return senha;
 	}
@@ -110,7 +113,7 @@ public class Cliente implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -118,13 +121,21 @@ public class Cliente implements Serializable {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	public String getCidade() {
 		return cidade;
 	}
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getLogradouro() {
@@ -167,15 +178,4 @@ public class Cliente implements Serializable {
 				+ ", status=" + status + "]";
 	}
 
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 }
