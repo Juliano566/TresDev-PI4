@@ -16,7 +16,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
 	public Cliente findByEmailAndSenha(String email, String senha);
 	
-	@Query(nativeQuery = true, value = "select * from funcionario where email = ?")
-	public boolean buscarEmail(String email);
+	@Query(nativeQuery = true, value = "select email from funcionario where email = ?")
+	public String buscarEmail(String email);
 
 }

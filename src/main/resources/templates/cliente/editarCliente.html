@@ -126,7 +126,8 @@
 					<div class="form-group col-md-6">
 						<label for="cep">CEP</label> <input type="text"
 							class="form-control" id="cep" name="cep" size="10" maxlength="9"
-							onblur="pesquisacep(this.value);" value="" th:field="*{cep}" required />
+							onblur="pesquisacep(this.value);" value="" th:field="*{cep}"
+							required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -146,7 +147,8 @@
 				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" name="bairro" value="" required />
+							class="form-control" id="bairro" th:field="*{bairro}"
+							name="bairro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -154,8 +156,8 @@
 				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="rua">Rua</label> <input type="text"
-							class="form-control" id="rua" placeholder="" name="logradouro"
-							value="" required />
+							class="form-control" id="rua" placeholder=""
+							th:field="*{logradouro}" name="logradouro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -175,8 +177,8 @@
 					<div class="form-group col-md-6">
 						<label for="complemento">Complemento</label> <input type="text"
 							class="form-control" id="complemento"
-							placeholder="fundos, casa, AP. 102, .." name="complemento"
-							value="" required />
+							placeholder="fundos, casa, AP. 102, .." th:field="*{complemento}"
+							name="complemento" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>

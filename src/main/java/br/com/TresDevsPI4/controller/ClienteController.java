@@ -30,7 +30,7 @@ public class ClienteController {
 		mv.addObject("cliente", cliente);
 		return mv;
 	}
-	
+
 	@GetMapping("/cep")
 	public ModelAndView cep(Cliente cliente) {
 		ModelAndView mv = new ModelAndView("/cep");
@@ -89,11 +89,17 @@ public class ClienteController {
 	@PostMapping("/cliente/salvar")
 	public String salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
 		try {
+			String email = clienteRepository.buscarEmail(cliente.getEmail());
+
+			if (email == null) {
 				String senha = cliente.getSenha();
 				senha = Util.md5(senha);
 				cliente.setSenha(senha);
 				clienteRepository.save(cliente);
 				return "redirect:/";
+			}
+			ra.addFlashAttribute("mensagem", "Dados Invalidos");
+			return "redirect:/cliente/cadastrar";
 		} catch (Exception e) {
 			ra.addFlashAttribute("mensagem", "Dados Invalidos");
 			return "redirect:/cliente/cadastrar";
