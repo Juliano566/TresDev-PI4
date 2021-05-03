@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Loja -=TresDev=-</title>
+
+<!-- importação do bootstrap min.css -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+<!-- importação do css custom -->
+<link href="../../css/estilosDetalhes.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/owl.carousel.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/responsive.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+	<div th:replace="layout :: navlinks"></div>
+
+	<!-- Page Content -->
+	<div class="container mt-5 pt-5">
+
+
+		<div class="row">
+
+			<div class="col-lg-3">
+
+				<h1 class="my-4">Categorias</h1>
+				<div class="list-group">
+					<a href="#" class="list-group-item">HARDWARE</a> <a href="#"
+						class="list-group-item">PERIFÉRICOS</a> <a href="#"
+						class="list-group-item">COMPUTADORES</a> <a href="#"
+						class="list-group-item">MONITORES</a> <a href="#"
+						class="list-group-item">CADEIRAS GAMER</a> <a href="#"
+						class="list-group-item">ELETRONICOS</a> <a href="#"
+						class="list-group-item">NOTEBOOKS E PORTÁTEIS</a> <a href="#"
+						class="list-group-item">REDE & WIRELLES</a> <a href="#"
+						class="list-group-item">MUNDO GEEK</a> <a href="#"
+						class="list-group-item">KIT UPGRADE</a>
+				</div>
+
+			</div>
+			<!-- /.col-lg-3 -->
+
+			<div class="col-lg-9 mt-5">
+
+				<h1>Carrinho</h1>
+
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>preco</th>
+								<th>quantidade</th>
+								<th>imagem</th>
+								<th>Adicionar/Remover</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>PC</td>
+								<td>3000.00</td>
+								<td>1</td>
+								<td><img src="image/pc.jpg" width="100" /></td>
+								<td><a class="nav-link">Remover</a> <a class="nav-link">Adicionar</a></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>Monitor</td>
+								<td>1000.00</td>
+								<td>2</td>
+								<td><img src="image/monitor.jpg" width="100" /></td>
+								<td><a class="nav-link">Remover</a> <a class="nav-link">Adicionar</a></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>Teclado</td>
+								<td>250.00</td>
+								<td>1</td>
+								<td><img src="image/teclado.jpg" width="100" /></td>
+								<td><a class="nav-link">Remover</a> <a class="nav-link">Adicionar</a></td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>Mouse</td>
+								<td>150.00</td>
+								<td>1</td>
+								<td><img src="image/mouse.jpg" width="100" /></td>
+								<td><a class="nav-link">Remover</a> <a class="nav-link">Adicionar</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<label for="cep">CEP</label> <input placeholder="" />
+
+
+					<button class="btn btn-info">Calcular</button>
+
+					<br> <br> <label for="Valor">Valor final R$</label> <input
+						placeholder="4.400" /> <br> <br>
+					<button class="btn btn-danger">Finalizar</button>
+					<br> <br> <br>
+				</div>
+
+
+			</div>
+			<!-- /.col-lg-9 -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<div th:replace="layout::footer"></div>
+
+</body>
+</html>
