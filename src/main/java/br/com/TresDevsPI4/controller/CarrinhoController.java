@@ -33,6 +33,36 @@ public class CarrinhoController {
 		mv.addObject("produto", produto);
 		return mv;
 	}
+	
+	@GetMapping("/loja/checkout-endereco")
+	public ModelAndView endereco(Produto produto) {
+		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco");
+		mv.addObject("produto", produto);
+		return mv;
+	}
+	
+	@GetMapping("/loja/checkout-formapg")
+	public ModelAndView pagamento(Produto produto) {
+		ModelAndView mv = new ModelAndView("/loja/CheckoutFormaPagamento");
+		mv.addObject("produto", produto);
+		return mv;
+	}
+	
+	@GetMapping("/loja/checkout-cartao")
+	public ModelAndView addCartao(Produto produto) {
+		ModelAndView mv = new ModelAndView("/loja/novoCartao");
+		mv.addObject("produto", produto);
+		return mv;
+	}
+	
+	@GetMapping("/loja/checkout-parcelamento")
+	public ModelAndView addParcelamento(Produto produto) {
+		ModelAndView mv = new ModelAndView("/loja/checkoutParcelamento");
+		mv.addObject("produto", produto);
+		return mv;
+	}
+	
+	
 
 
 }
