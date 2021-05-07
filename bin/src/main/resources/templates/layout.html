@@ -28,7 +28,7 @@
 	<!-- Navigation -->
 	<div th:fragment="navlinks">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-			style="height: 150px;">
+			style="height: 100px;">
 			<div class="container">
 				<a class="navbar-brand" href="/index">-=TresDev=-</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -38,15 +38,29 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="#">Home
+						<li class="nav-item active"><a class="nav-link" href="/">Home
 								<span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Carrinho</a>
+						<li class="nav-item"><a class="nav-link" href="/loja/carrinho">Carrinho</a>
 						</li>
 
-						<li class="nav-item"><a class="nav-link" href="#">Contato</a>
+						<li class="nav-item"><a class="nav-link" href="/contato">Contato</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+
+						<div th:if="${session.usuarioLogado.nome == null}">
+							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+						</div>
+
+						<div th:if="${session.usuarioLogado.nome != null}">
+							<li class="nav-item"><a class="nav-link"
+								href="/cliente/perfil">Perfil</a></li>
+						</div>
+
+						<div th:if="${session.usuarioLogado.nome != null}">
+							<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
+						</div>
+
+
 
 					</ul>
 					<form class="form-inline my-2 my-lg-0">

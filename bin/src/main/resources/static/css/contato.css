@@ -1,0 +1,31 @@
+#colunaEsquerda {
+ 	 background-color: #e6e6e6;
+	}
+	
+#colunaDireita{
+	
+	background-color: #595959;
+}
+
+
+map{
+	size: 50px;
+}
+
+input.dadosCartao{
+	border: none;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	
+
+	margin: 3px;
+	
+	
+	
+
+}
+
+input:focus{
+	box-shadow: 0 0 0 0;
+    outline: 0;
+}

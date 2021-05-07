@@ -2,7 +2,7 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{cliente/layoutCli}">
 <head>
-<title>Cadastro de Cliente</title>
+<title>Editar Cliente</title>
 <meta charset="utf-8">
 <head>
 <title>ViaCEP Webservice</title>
@@ -15,8 +15,7 @@
 		document.getElementById('rua').value = ("");
 		document.getElementById('bairro').value = ("");
 		document.getElementById('cidade').value = ("");
-		document.getElementById('uf').value = ("");
-		document.getElementById('ibge').value = ("");
+
 	}
 
 	function meu_callback(conteudo) {
@@ -102,25 +101,12 @@
 				</div>
 
 
-				<div class="form-">
-					<div class="form-group col-md-6">
-						<label for="email">Email</label> <input type="email"
-							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}" name="email" value=""
-							required />
-						<div class="invalid-feedback"></div>
-					</div>
-				</div>
-
-				<div class="">
-					<div class="form-group col-md-6">
-						<label for="nome">CPF</label> <input type="text"
-							class="form-control" id="nome" placeholder="CPF"
-							autofocus="autofocus" th:field="*{cpf}" value="" required
-							minlength="11" maxlength="11" />
-						<div class="invalid-feedback"></div>
-					</div>
-				</div>
+				<input type="hidden" class="form-control" id="email"
+					placeholder="email" autofocus="autofocus" th:field="*{email}"
+					name="email" value="" required /> <input type="hidden"
+					class="form-control" id="nome" placeholder="CPF"
+					autofocus="autofocus" th:field="*{cpf}" value="" required
+					minlength="11" maxlength="11" />
 
 				<div class="">
 					<div class="form-group col-md-6">
@@ -140,7 +126,8 @@
 					<div class="form-group col-md-6">
 						<label for="cep">CEP</label> <input type="text"
 							class="form-control" id="cep" name="cep" size="10" maxlength="9"
-							onblur="pesquisacep(this.value);" th:field="*{cep}" value="" required />
+							onblur="pesquisacep(this.value);" value="" th:field="*{cep}"
+							required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -160,7 +147,8 @@
 				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" name="bairro" value="" required />
+							class="form-control" id="bairro" th:field="*{bairro}"
+							name="bairro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -168,8 +156,8 @@
 				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="rua">Rua</label> <input type="text"
-							class="form-control" id="rua" placeholder="" name="logradouro"
-							value="" required />
+							class="form-control" id="rua" placeholder=""
+							th:field="*{logradouro}" name="logradouro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -189,8 +177,8 @@
 					<div class="form-group col-md-6">
 						<label for="complemento">Complemento</label> <input type="text"
 							class="form-control" id="complemento"
-							placeholder="fundos, casa, AP. 102, .." name="complemento"
-							value="" required />
+							placeholder="fundos, casa, AP. 102, .." th:field="*{complemento}"
+							name="complemento" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -207,4 +195,3 @@
 </body>
 
 </html>
-
