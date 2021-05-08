@@ -155,8 +155,8 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/removerProduto/{id}")
-	public ModelAndView removerProdutoCarrinho(@PathVariable Integer id) {
-		ModelAndView mv = new ModelAndView("Loja/carrinho");
+	public String removerProdutoCarrinho(@PathVariable Integer id) {
+		ModelAndView mv = new ModelAndView("/loja/carrinho");
 		for (ItensCompra it : itensCompra) {
 			if (it.getProduto().getId().equals(id)) {
 				itensCompra.remove(it);
@@ -164,6 +164,7 @@ public class CarrinhoController {
 			}
 		}
 		mv.addObject("listaItens", itensCompra);
-		return mv;
+		return "redirect:/loja/carrinho";
+
 	}
 }

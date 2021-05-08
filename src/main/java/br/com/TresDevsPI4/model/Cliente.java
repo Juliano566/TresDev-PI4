@@ -34,6 +34,7 @@ public class Cliente implements Serializable {
 	@Column(unique = true)
 	private String cpf;
 	private boolean status = true;
+	private String copiaEndereco;
 
 	public Cliente() {
 	}
@@ -168,6 +169,14 @@ public class Cliente implements Serializable {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public String getCopiaEndereco() {
+		return copiaEndereco;
+	}
+
+	public void setCopiaEndereco(String copiaEndereco) {
+		this.copiaEndereco = copiaEndereco;
 	}
 
 	@Override

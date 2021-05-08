@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.TresDevsPI4.model.Cliente;
+import br.com.TresDevsPI4.model.Endereco;
 import br.com.TresDevsPI4.repositories.ClienteRepository;
+import br.com.TresDevsPI4.repositories.EnderecoRepository;
 import br.com.TresDevsPI4.services.Util;
 
 @Controller
@@ -22,6 +24,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private EnderecoRepository endereceRepository;
 
 //done 
 	@GetMapping("/teste2")
@@ -87,23 +92,66 @@ public class ClienteController {
 
 //done
 	@PostMapping("/cliente/salvar")
-	public String salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
-		try {
-			String email = clienteRepository.buscarEmail(cliente.getEmail());
+	public ModelAndView salvar(Cliente cliente, BindingResult result, RedirectAttributes ra) {
 
-			if (email == null) {
+		ModelAndView mv = new ModelAndView("/cliente/cadastrarCliente");
+
+		String emailF = clienteRepository.buscarEmailFuncionario(cliente.getEmail());
+		String emailC = clienteRepository.buscarEmailCliente(cliente.getEmail());
+		String cpf = clienteRepository.buscarCPF(cliente.getCpf());
+
+		if (emailF == null && emailC == null) {
+			if (cpf == null) {
 				String senha = cliente.getSenha();
 				senha = Util.md5(senha);
 				cliente.setSenha(senha);
 				clienteRepository.save(cliente);
-				return "redirect:/";
+
+				if (cliente.getCopiaEndereco() != null) {
+					Integer id = clienteRepository.buscarId(cliente.getEmail());
+					Endereco endereco = new Endereco();
+
+					endereco.setCliente(id);
+					endereco.setCep(Integer.parseInt(cliente.getCep()));
+					endereco.setCidade(cliente.getCidade());
+					endereco.setLogradouro(cliente.getLogradouro());
+					endereco.setNumero(Integer.parseInt(cliente.getNumero()));
+					endereco.setComplemento(cliente.getComplemento());
+					endereco.setRua(cliente.getLogradouro());
+					endereco.setBairro(cliente.getBairro());
+					endereco.setStatus(true);
+					endereceRepository.save(endereco);
+
+				}
+
+				mv = new ModelAndView("/administrativo/login");
+				mv.addObject("cliente", cliente);
+				return mv;
 			}
-			ra.addFlashAttribute("mensagem", "Dados Invalidos");
-			return "redirect:/cliente/cadastrar";
-		} catch (Exception e) {
-			ra.addFlashAttribute("mensagem", "Dados Invalidos");
-			return "redirect:/cliente/cadastrar";
+			ra.addFlashAttribute("mensagemCpf", "CPF Invalido");
+			mv.addObject("mensagemCpf", "CPF Invalido");
+			mv.addObject("cliente", cliente);
+			return mv;
+
 		}
+
+		if (cpf == null) {
+			ra.addFlashAttribute("mensagemEmail", "Email Invalido");
+
+			mv.addObject("mensagemEmail", "Email Invalido");
+			mv.addObject("cliente", cliente);
+			return mv;
+
+		}
+
+		ra.addFlashAttribute("mensagemCpf", "CPF Invalido");
+		ra.addFlashAttribute("mensagemEmail", "Email Invalido");
+
+		mv.addObject("mensagemEmail", "Email Invalido");
+		mv.addObject("mensagemCpf", "CPF Invalido");
+		mv.addObject("cliente", cliente);
+		return mv;
+
 	}
 
 //done
