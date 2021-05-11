@@ -30,6 +30,7 @@ import br.com.TresDevsPI4.services.Util;
 public class CarrinhoController {
 
 	private List<ItensCompra> itensCompra = new ArrayList<ItensCompra>();
+	private Cliente cliente;
 
 	@Autowired
 	private ItensCompraRepositorio repositorioItensCompra;
@@ -39,6 +40,7 @@ public class CarrinhoController {
 
 	@Autowired
 	private ProdutoRepository repositorioProduto;
+	
 
 	private Compra compra = new Compra();
 
@@ -55,19 +57,25 @@ public class CarrinhoController {
 		calcularTotal();
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra);
+	
 		return mv;
 	}
+	
+
+
 
 	@GetMapping("/loja/checkout-endereco")
 	public ModelAndView endereco(Produto produto) {
 		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco");
-		mv.addObject("produto", produto);
+		calcularTotal();
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
 		return mv;
 	}
 
-	@GetMapping("/loja/checkout-formapg")
+	@GetMapping("/loja/resumo")
 	public ModelAndView pagamento(Produto produto) {
-		ModelAndView mv = new ModelAndView("/loja/CheckoutFormaPagamento");
+		ModelAndView mv = new ModelAndView("/loja/resumoVenda");
 		mv.addObject("produto", produto);
 		return mv;
 	}
@@ -137,6 +145,7 @@ public class CarrinhoController {
 						it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
 					}
 				} else if (acao == 0) {
+
 					it.setQuantidade(it.getQuantidade() - 1);
 					it.setValorTotal(0.);
 					it.setValorTotal(it.getValorTotal() + (it.getQuantidade() * it.getValorUnitario()));
@@ -148,11 +157,22 @@ public class CarrinhoController {
 				break;
 
 			}
+			System.out.println("teste2");
+			System.out.println(itensCompra.indexOf(compra.getValorTotal()));
+			
+			
 
 		}
+		System.out.println("teste3");
+		System.out.println(itensCompra.toString());
 		return "redirect:/loja/carrinho";
 
 	}
+	
+	
+	
+	
+
 
 	@GetMapping("/removerProduto/{id}")
 	public String removerProdutoCarrinho(@PathVariable Integer id) {

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Loja -=TresDev=-</title>
+
+<!-- importação do bootstrap min.css -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+<!-- importação do css custom -->
+<link href="../../css/estilosDetalhes.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/owl.carousel.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/responsive.css" rel="stylesheet">
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+
+	<div th:replace="layout :: navlinks"></div>
+
+	<!-- Page Content -->
+	<div class="container mt-5 pt-5">
+
+
+		<div class="row">
+
+			<div class="col-12">
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">img</th>
+								<th scope="col">Produto</th>
+								<th scope="col">Estoque</th>
+								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col" class="text-right">Valor Unitario</th>
+								<th scope="col" class="text-right">Valor Total</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+								<td><img
+									th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}"
+									width="100" /></td>
+								<td th:text="${item.produto.nome}"></td>
+
+
+
+								<td th:text="${item.produto.quantidade}"></td>
+
+
+								<td><span th:text="${item.quantidade}"></span> &nbsp;&nbsp;
+
+									<a class="btn btn-sm btn-success"
+									th:href="@{/alterarQuantidade/{id}/{acao}/{quantidade}(id=${item.produto.id},acao=${0}, quantidade=${item.produto.quantidade})}"
+									role="button"><i class="fa fa-minus"></i></a> &nbsp;&nbsp; <a
+									class="btn btn-sm btn-success"
+									th:href="@{/alterarQuantidade/{id}/{acao}/{quantidade}(id=${item.produto.id},acao=${1}, quantidade=${item.produto.quantidade})}"
+									role="button"><i class="fa fa-plus"></i></a></td>
+
+
+
+
+								<td class="text-right" th:text="${item.valorUnitario}"></td>
+
+
+
+								<td class="text-right" th:text="${item.valorTotal}"></td>
+
+
+
+								<td class="text-right"><a class="btn btn-sm btn-danger"
+									th:href="@{/removerProduto/{id}(id=${item.produto.id})}"
+									role="button"><i class="fa fa-trash"></i></a></td>
+							</tr>
+							
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><strong>Total</strong></td>
+								<td class=text-right><span th:text="${compra.valorTotal}"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="col mb-2">
+				<div class="row">
+					<div class="col-sm-12  col-md-4"></div>
+					<div class="col-sm-12  col-md-4"></div>
+					<div class="col-sm-12 col-md-4 text-right">
+						<a class="btn btn-lg btn-block btn-success text-uppercase"
+							role="button">Checkout</a>
+
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<div th:replace="layout::footer"></div>
+
+</body>
+</html>

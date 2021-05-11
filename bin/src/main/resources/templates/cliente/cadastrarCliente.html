@@ -101,6 +101,7 @@
 					</div>
 				</div>
 
+				<div th:text="${mensagemEmail}" th:if="${mensagemEmail != null}"></div>
 
 				<div class="form-">
 					<div class="form-group col-md-6">
@@ -112,6 +113,8 @@
 					</div>
 				</div>
 
+
+				<div th:text="${mensagemCpf}" th:if="${mensagemCpf != null}"></div>
 				<div class="">
 					<div class="form-group col-md-6">
 						<label for="nome">CPF</label> <input type="text"
@@ -140,7 +143,8 @@
 					<div class="form-group col-md-6">
 						<label for="cep">CEP</label> <input type="text"
 							class="form-control" id="cep" name="cep" size="10" maxlength="9"
-							onblur="pesquisacep(this.value);" th:field="*{cep}" value="" required />
+							onblur="pesquisacep(this.value);" th:field="*{cep}" value=""
+							required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
@@ -191,6 +195,15 @@
 							class="form-control" id="complemento"
 							placeholder="fundos, casa, AP. 102, .." name="complemento"
 							value="" required />
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+
+
+				<div class="form-">
+					<div class="form-group col-md-6">
+						<input type="checkbox" id="copiaEndereco" name="copiaEndereco" checked>
+						<label for="copiaEndereco">Copiar endereço para entrega</label>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>

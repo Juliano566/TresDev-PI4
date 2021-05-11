@@ -7,11 +7,13 @@
 
 <head>
 
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
 <title>Loja -=TresDev=-</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="../../static/css/contato.css" media="screen" />
-
+<link rel="stylesheet" type="text/css"
+	href="../../static/css/contato.css" media="screen" />
+  <script src="../../js/modal.js"></script>
 
 </head>
 <body>
@@ -19,82 +21,171 @@
 	<section class="layout-content" layout:fragment="corpo">
 
 		<div class="row m-5">
-		<div class="col-7 mt-2 pt-5 ml-2 mr-1">
-			<h4>Como você deseja receber ou retirar sua compra?</h4>
-			</br>
-			<h6>Endereço</h6>
+			<div class="col-6 mt-2 pt-5 ml-2 mr-1">
+			
+			
+				
+
+				
+				<h4>Escolha um endereço</h4>
+				</br>
+				<h6>Endereços</h6>
+
+				<div class="card">
+					<div class="card-body row">
+
+
+
+
+						<div class="col-2  text-center">
+							<br> <i class="fas fa-map-marked-alt map"></i>
+						</div>
+						<div class="col-6">
 						
-			<div class="card">
-			  <div class="card-body row">
-			  
-			  <div class="col-2  text-center">
-			  	<br>
-			  		<i class="fas fa-map-marked-alt map"></i>
-			  </div>
-			  <div class="col-6">
-			  		<h6 class="p-0 m-0">Rua ummmmmmm.</h6>
-			  		São paulo- sp - CEP 04836370.<br>
-			  		Nailson nascimento ......<br>
-			  </div>
-			  <div class="col-4">
-			  		<br>
-			  		<a href="#"> Editar ou escolher outro</a>
-			  </div>
-			  
-			    	
-			    
-			  </div>
-			</div>
-			<br><br>
-			
-			
-		<h6>Receber compra</h6>
-		<br>
-		<div class="card">
-		  <div class="card-body">
-		    	
-		    	<input type="radio"> Chegará amanhã
-		    	
-		  </div>
-		</div>
-		<br><br>
+						
+						
+							<h6 class="p-0 m-0"><span th:text="${session.usuarioLogado.logradouro}"></span></h6>
+							<span th:text="${session.usuarioLogado.cidade}"></span>  - <span th:text="${session.usuarioLogado.cep}">
+							</span><br> <span th:text="${session.usuarioLogado.nome}"></span><br>
+							
+							
+						</div>
+						<div class="col-4">
+						
+						
+						<a class="nav-link"
+							th:href="@{/cliente/listar/endereco/{id}(id=${session.usuarioLogado.id})}">
+								 <span>Editar ou escolher outro </span>
+						</a>
+						
+							
+										
+							
+						</div>
+
+
+
+					</div>
+				</div>
+				<br> <br>
+
+
+				<h4>Como você prefere pagar?</h4><br>
+				
+				<h5>Cartões</h5>
+				<div class="card" style="width: 33rem;">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><input type="radio" value="credito" onclick='mostrarModalAtualiza()' name="formaPagamento" class="mr-1"> <i class="far fa-credit-card mr-5"></i>Cartão de crédito</li>
+						<li class="list-group-item"><input type="radio" value="debito" name="formaPagamento" class="mr-1"> <i class="fal fa-credit-card-front mr-5"></i>Cartão de débito</li>
 					
+					</ul>
+				</div>
+				<br><br>
+				
+				<h5>Pagamentos antecipados</h5>
+				<div class="card" style="width: 33rem;">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><input type="radio" value="pix" name="formaPagamento" class="mr-1"> <i class="fas fa-qrcode mr-5"></i>Pix (Aprovação imediata)</li>
+						<li class="list-group-item"><input type="radio" value="boleto" name="formaPagamento" class="mr-1"> <i class="fas fa-barcode  mr-5"></i></i>Boleto (Será aprovado em 1 ou 2 dias úteis.)</li>
+						
+					
+					</ul>
+				</div>
+
+			</div>
+
+			<br>
+			<div class="card col-5 mt-5 border-0">
+				<table class="table ">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">Produto</th>
+
+							<th scope="col" class="text-center">Qtde</th>
+							<th scope="col" class="text-right">Valor Unitario</th>
+
+
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="item : ${listaItens}">
+							<td><img th:src="@{../../image/transferir.svg}" width="100" /></td>
+							<!--	th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" -->
+							<td th:text="${item.produto.nome}"></td>
+							<td><span th:text="${item.quantidade}"></span></td>
+
+							<td class="text-right" th:text="${item.valorTotal}"></td>
+
+
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+
+				<div class="mt-5 p-5">
+					<h5 class="card-title">
+						Total - R$ <span th:text="${compra.valorTotal}"></span>
+					</h5>
+
+					<a class="btn btn-primary mr-0"
+						th:href="@{/loja/resumo}"
+						role="button">Finalizar a compra</i>
+						
+					</a>
+
+					
+				</div>
+			</div>
+			
+            <!-- Modal quantidade de parcelas-->
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Escolha a Quantidade de parcelas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+     
+
+
+				<div class="card" style="width: 100%;">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><input type="radio" name="parcelas" value="1" class="mr-3"><i
+							class="far fa-credit-card mr-5"></i>1 x cartão de crédito</li>
+						<li class="list-group-item"><input type="radio" name="parcelas" value="2"  class="mr-3"><i
+							class="far fa-credit-card mr-5"></i>2 x cartão de crédito</li>
+						<li class="list-group-item"><input type="radio"  name="parcelas" value="3" class="mr-3"><i
+							class="far fa-credit-card mr-5"></i>3 x cartão de crédito</li>
+						<li class="list-group-item"><input type="radio" name="parcelas" value="4" class="mr-3"><i
+							class="far fa-credit-card mr-5"></i>4 x cartão de crédito</li>
+						<li class="list-group-item"><input type="radio" name="parcelas" value="5" class="mr-3"><i
+							class="far fa-credit-card mr-5"></i>5 x cartão de crédito</li>
+					</ul>
+				</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="atualizarProduto()">salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			
 			
-		<h6>Retirar Compra</h6>
-		<br>
-		<div class="card">
-		  <div class="card-body">
-		    	
-		    	<input type="radio"> A partir de amanhã em uma loja fisica
-		    	
-		  </div>
 		</div>
-		<br>
-		<button class="btn btn-primary mr-0" >Continuar</button>
+
 		</div>
-		
-		<br>
-	<div class="card col-4 mt-5 border-0">
-	  <img class="card-img-top" src="../../image/transferir.svg" alt="Imagem de capa do card">
-	  <div class="card-body">
-	  
-	  	<p class="card-text">Quantidade: 1</p>
-	  	<hr>
-	    <h5 class="card-title">Pc Cpu Intel Core I5</h5>
-	    <p class="card-text">valor do produto - R$ 3000.00</p>
-	    <p class="card-text">Valor do frete - R$50,00</p>
-	    <hr>
-	    <h5 class="card-title">Total - R$ 3050,00</h5>
-	  </div>
-	</div>
-		
-</div>
-		
-			
-		
-		
-		
+
+
+
+
+
 		</div>
 
 	</section>

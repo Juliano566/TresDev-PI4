@@ -22,6 +22,18 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Produto implements Serializable {
 
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", estrelas=" + estrelas
+				+ ", status=" + status + ", quantidade=" + quantidade + ", preco=" + preco + ", foto1=" + foto1
+				+ ", foto2=" + foto2 + ", foto3=" + foto3 + ", foto4=" + foto4 + ", getId()=" + getId() + ", getNome()="
+				+ getNome() + ", getDescricao()=" + getDescricao() + ", getEstrelas()=" + getEstrelas()
+				+ ", getStatus()=" + getStatus() + ", getQuantidade()=" + getQuantidade() + ", getPreco()=" + getPreco()
+				+ ", getFoto1()=" + getFoto1() + ", getFoto2()=" + getFoto2() + ", getFoto3()=" + getFoto3()
+				+ ", getFoto4()=" + getFoto4() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

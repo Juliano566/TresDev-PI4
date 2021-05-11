@@ -16,6 +16,16 @@ import javax.persistence.TemporalType;
 
 public class ItensCompra implements Serializable {
 
+	@Override
+	public String toString() {
+		return "ItensCompra [id=" + id + ", produto=" + produto + ", compra=" + compra + ", quantidade=" + quantidade
+				+ ", valorUnitario=" + valorUnitario + ", valorTotal=" + valorTotal + ", getValorTotal()="
+				+ getValorTotal() + ", getId()=" + getId() + ", getProduto()=" + getProduto() + ", getCompra()="
+				+ getCompra() + ", getQuantidade()=" + getQuantidade() + ", getValorUnitario()=" + getValorUnitario()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+
 	public ItensCompra() {
 		super();
 	}

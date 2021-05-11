@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	layout:decorate="~{cliente/layoutCli}">
+
+<title>Editar Cliente</title>
+<meta charset="utf-8">
+
+<head>
+
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+<title>Loja -=TresDev=-</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="../../static/css/contato.css" media="screen" />
+
+
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+
+		<div class="row m-5">
+			<div class="col-6 mt-2 pt-5 ml-2 mr-1">
+			
+			
+				
+
+				
+				<h4>Escolha um endereço</h4>
+				</br>
+				<h6>Endereços</h6>
+
+				<div class="card">
+					<div class="card-body row">
+
+
+
+
+						<div class="col-2  text-center">
+							<br> <i class="fas fa-map-marked-alt map"></i>
+						</div>
+						<div class="col-6">
+						
+						
+						
+							<h6 class="p-0 m-0"><span th:text="${session.usuarioLogado.logradouro}"></span></h6>
+							<span th:text="${session.usuarioLogado.cidade}"></span>  - <span th:text="${session.usuarioLogado.cep}">
+							</span><br> <span th:text="${session.usuarioLogado.nome}"></span><br>
+							
+							
+						</div>
+						<div class="col-4">
+						
+						
+						<a class="nav-link"
+							th:href="@{/cliente/listar/endereco/{id}(id=${session.usuarioLogado.id})}">
+								 <span>Editar ou escolher outro </span>
+						</a>
+						
+							
+										
+							
+						</div>
+
+
+
+					</div>
+				</div>
+				<br> <br>
+
+
+				<h6>Receber compra</h6>
+				<br>
+				<div class="card">
+					<div class="card-body">
+
+						<input type="radio"> Chegará amanhã
+
+					</div>
+				</div>
+				<br> <br>
+
+
+
+				<h6>Retirar Compra</h6>
+				<br>
+				<div class="card">
+					<div class="card-body">
+
+						<input type="radio"> A partir de amanhã em uma loja fisica
+
+					</div>
+				</div>
+				<br>
+
+			</div>
+
+			<br>
+			<div class="card col-5 mt-5 border-0">
+				<table class="table ">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">Produto</th>
+
+							<th scope="col" class="text-center">Qtde</th>
+							<th scope="col" class="text-right">Valor Unitario</th>
+
+
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="item : ${listaItens}">
+							<td><img th:src="@{../../image/transferir.svg}" width="100" /></td>
+							<!--	th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" -->
+							<td th:text="${item.produto.nome}"></td>
+							<td><span th:text="${item.quantidade}"></span></td>
+
+							<td class="text-right" th:text="${item.valorTotal}"></td>
+
+
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+
+				<div class="mt-5 p-5">
+					<h5 class="card-title">
+						Total - R$ <span th:text="${compra.valorTotal}"></span>
+					</h5>
+
+					<a class="btn btn-primary mr-0"
+						th:href="finalizar"
+						role="button">Finalizar a compra</i>
+						
+					</a>
+
+					<button class="btn btn-primary mr-0">Continuar</button>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+
+
+
+		</div>
+
+	</section>
+
+</body>
+
+</html>
