@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import br.com.TresDevsPI4.model.Compra;
 import br.com.TresDevsPI4.model.Endereco;
 import br.com.TresDevsPI4.model.Funcionario;
 
@@ -17,5 +18,6 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 	
 	@Query(nativeQuery = true, value = "select * from endereco where id = ?")
 	public List<Endereco> buscarEndereco2(int id);
+	
 	
 }

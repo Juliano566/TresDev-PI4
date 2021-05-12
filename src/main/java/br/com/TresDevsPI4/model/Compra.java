@@ -24,8 +24,6 @@ public class Compra implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
-	private Cliente cliente;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra = new Date();
 	private String formaPagamento;
@@ -51,14 +49,6 @@ public class Compra implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Date getDataCompra() {

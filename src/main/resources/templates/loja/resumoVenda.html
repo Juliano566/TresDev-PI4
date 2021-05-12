@@ -84,7 +84,7 @@
 
 						<tbody>
 							<tr th:each="item : ${listaItens}">
-								<td><img th:src="@{../../image/transferir.svg}" width="100" /></td>
+								<td><img th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${item.produto.foto1})}" width="100" /></td>
 								<!--	th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" -->
 								<td th:text="${item.produto.nome}"></td>
 								<td><span th:text="${item.quantidade}"></span></td>

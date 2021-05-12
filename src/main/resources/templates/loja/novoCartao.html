@@ -40,12 +40,12 @@
 					<div class="card-body row">
 						<div class="col-6 ">
 						
-						<input type="text" placeholder="Número do cartao" class="dadosCartao">
-						<input type="text" placeholder="Nome Completo" class="dadosCartao">
-						<input type="text" placeholder="CPF do titular do cartão" class="dadosCartao">
+						<input type="text" placeholder="Número do cartao" class="dadosCartao" required>
+						<input type="text" placeholder="Nome Completo" class="dadosCartao" required>
+						<input type="text" placeholder="CPF do titular do cartão" class="dadosCartao" required>
 						
-						<input type="text" placeholder="Data de Vencimento" class="dadosCartao">
-						<input type="text" placeholder="Código de Segurança" class="dadosCartao">
+						<input type="text" placeholder="Data de Vencimento" class="dadosCartao" required>
+						<input type="text" placeholder="Código de Segurança" class="dadosCartao" required>
 						</div>
 						<div class="col-6">
 							<img class="card-img-top" src="../../image/images.jfif"
@@ -55,30 +55,11 @@
 					</div>
 				</div>
 				<br>
-				<button class="btn btn-primary mr-0">Adicionar</button>
+				<a class="btn btn-primary ml-5"
+							th:href="@{/loja/resumo/{id}(id=${pagamento})}" role="button">adicionar</a></li>
 			</div>
 
 			<br>
-			<div class="card col-4 mt-5 border-0">
-				<img class="card-img-top" src="../../image/transferir.svg"
-					alt="Imagem de capa do card">
-				<div class="card-body">
-
-					<p class="card-text">Quantidade: 1</p>
-					<hr>
-					<h5 class="card-title">Pc Cpu Intel Core I5</h5>
-					<p class="card-text">valor do produto - R$ 3000.00</p>
-					<p class="card-text">Valor do frete - R$50,00</p>
-					<hr>
-					<h5 class="card-title">Total - R$ 3050,00</h5>
-				</div>
-			</div>
-
-		</div>
-
-
-
-
 
 		</div>
 

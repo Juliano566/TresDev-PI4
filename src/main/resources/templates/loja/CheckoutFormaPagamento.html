@@ -31,11 +31,11 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><i
 							class="far fa-credit-card mr-5"></i>Cartão de crédito <a
-							class="btn btn-primary ml-5" th:href="@{/loja/formaDePagamento}"
+							class="btn btn-primary ml-5" th:href="@{/loja/cartao/{id}(id=${1})}"
 							role="button">Selecionar</a></li>
 						<li class="list-group-item"><i
 							class="fal fa-credit-card-front mr-5"></i>Cartão de débito <a
-							class="btn btn-primary ml-5" th:href="@{/loja/formaDePagamento}"
+							class="btn btn-primary ml-5" th:href="@{/loja/cartao/{id}(id=${2})}"
 							role="button">Selecionar</a></li>
 
 					</ul>

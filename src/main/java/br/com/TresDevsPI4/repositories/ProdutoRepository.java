@@ -14,4 +14,10 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Query(nativeQuery = true, value = "select * from produto where status = true")
 	public List<Produto> buscarTrue();
 
+	@Query(nativeQuery = true, value = "select * from produto where id = ?")
+	public List<Produto> buscarProduto(Integer id);
+	
+	@Query(nativeQuery = true, value = "select nome from produto where id = ?")
+	public String buscarProdutoNome(Integer id);
+	
 }

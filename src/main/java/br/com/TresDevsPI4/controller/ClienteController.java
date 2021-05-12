@@ -16,7 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.TresDevsPI4.model.Cliente;
 import br.com.TresDevsPI4.model.Endereco;
 import br.com.TresDevsPI4.repositories.ClienteRepository;
+import br.com.TresDevsPI4.repositories.CompraRepositorio;
 import br.com.TresDevsPI4.repositories.EnderecoRepository;
+import br.com.TresDevsPI4.repositories.ItensCompraRepositorio;
+import br.com.TresDevsPI4.repositories.ProdutoRepository;
 import br.com.TresDevsPI4.services.Util;
 
 @Controller
@@ -27,6 +30,18 @@ public class ClienteController {
 
 	@Autowired
 	private EnderecoRepository endereceRepository;
+	
+	@Autowired
+	private CompraRepositorio compraRepository;
+	
+	@Autowired
+	private ItensCompraRepositorio itensCompraRepository;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 //done 
 	@GetMapping("/teste2")
@@ -56,6 +71,29 @@ public class ClienteController {
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("/cliente/listarCliente");
 		mv.addObject("listarCliente", clienteRepository.findAll());
+		return mv;
+	}
+	
+	@GetMapping("/cliente/listarPedidos/{id}")
+	public ModelAndView listarPedidos(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/cliente/listarPedidos");
+		mv.addObject("listarPedidos", compraRepository.listarCompra(id));
+		return mv;
+	}
+	
+	@GetMapping("/cliente/nomeProduto/{id}")
+	public String listarNomeProduto(@PathVariable("id") int id) {
+		String nome = produtoRepository.buscarProdutoNome(id);
+		nome = "teste";
+		return nome;
+	}
+	
+	@GetMapping("/cliente/listarPedidos/detalhes/{id}")
+	public ModelAndView listarPedidosDetalhes(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/cliente/listarPedidosDetalhes");
+		mv.addObject("listarPedidos", itensCompraRepository.listarCompra2(id));
+		Integer endereco = compraRepository.bustarEndereco(id);
+		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco2(endereco));
 		return mv;
 	}
 

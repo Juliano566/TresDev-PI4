@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -46,8 +47,11 @@ public class ItensCompra implements Serializable {
 	private Double valorUnitario = 0.;
 
 	private Double valorTotal = 0.;
-	
+
 	private Integer id_compra;
+
+	@JoinColumn(name = "id", nullable = false)
+	private Produto produto2;
 
 	public Double getValorTotal() {
 		return valorTotal;
@@ -107,7 +111,5 @@ public class ItensCompra implements Serializable {
 	public void setId_compra(Integer id_compra) {
 		this.id_compra = id_compra;
 	}
-	
-	
 
 }

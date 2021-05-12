@@ -54,9 +54,9 @@ public class CarrinhoController {
 	private CompraRepositorio compraRepository;
 
 	private Compra compra = new Compra();
-	
+
 	Integer id_endereco;
-	
+
 	Integer pagamento;
 
 	private void calcularTotal() {
@@ -72,7 +72,6 @@ public class CarrinhoController {
 		calcularTotal();
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra);
-
 		return mv;
 	}
 
@@ -85,7 +84,7 @@ public class CarrinhoController {
 		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco(id));
 		return mv;
 	}
-	
+
 	@GetMapping("/loja/checkout-endereco2/{id}")
 	public ModelAndView endereco2(Produto produto, @PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco2");
@@ -95,7 +94,7 @@ public class CarrinhoController {
 		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco(id));
 		return mv;
 	}
-	
+
 	@GetMapping("/loja/formaDePagamento/{id}")
 	public ModelAndView pagamento2(Produto produto, @PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView("/loja/CheckoutFormaPagamento");
@@ -106,9 +105,16 @@ public class CarrinhoController {
 		return mv;
 	}
 
+	@GetMapping("/loja/cartao/{id}")
+	public ModelAndView cartao(Produto produto, @PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/loja/NovoCartao");
+		mv.addObject("pagamento", id);
+		return mv;
+	}
+
 	@GetMapping("/loja/resumo/{id}")
 	public ModelAndView pagamento(Produto produto, @PathVariable("id") int id) {
-		ModelAndView mv = new ModelAndView("/loja/resumoVenda");	
+		ModelAndView mv = new ModelAndView("/loja/resumoVenda");
 		pagamento = id;
 		compra.setFrete(compra.getValorTotal() * 0.01);
 		mv.addObject("produto", produto);
@@ -233,10 +239,34 @@ public class CarrinhoController {
 
 	@GetMapping("/finalizarVenda/{id}")
 	public ModelAndView salvar(@PathVariable("id") int id) {
-		ModelAndView mv = new ModelAndView("/index");
-		int num = 0;
+		ModelAndView mv = new ModelAndView("/loja/vendaFinalizada");
 		compra.setId_cliente(id);
 		compra.setEndereco(id_endereco);
+
+		switch (pagamento) {
+		case 1: {
+			compra.setFormaPagamento("Cartão de credito");
+			break;
+		}
+		case 2: {
+			compra.setFormaPagamento("Cartão de debito");
+			break;
+		}
+		case 3: {
+			compra.setFormaPagamento("Pix");
+			break;
+		}
+		case 4: {
+			compra.setFormaPagamento("boleto");
+			break;
+		}
+		}
+
+		Integer con = 0;
+		for (ItensCompra it : itensCompra) {
+			con += it.getQuantidade();
+		}
+		compra.setQuantidade(con);
 		compraRepository.save(compra);
 		Integer idCompra = compraRepository.buscarIdCompra();
 		for (ItensCompra it : itensCompra) {
@@ -245,6 +275,9 @@ public class CarrinhoController {
 		for (ItensCompra it : itensCompra) {
 			repositorioItensCompra.save(it);
 		}
+		itensCompra.clear();
+		compra.setId(null);
+		mv.addObject("numeroPedido", idCompra);
 		return mv;
 	}
 
