@@ -16,18 +16,109 @@
 </head>
 <body>
 
- 
+
 
 
 	<section class="layout-content" layout:fragment="corpo">
 
-		<div class="row m-5">
-			<div class="col-7 mt-2 pt-5 ml-2 mr-1">
-				<h3>Resumo</h3><br>
-				
-				
+		<div class="row">
+			<div class="col-8 mt-2 pt-5 ml-2 mr-1">
+				<h3>Resumo</h3>
+				<br>
 
-		</div>
+				<h5>Endereço</h5>
+				<div th:each="endereco : ${listaEndereco}">
+					<div class="card">
+						<div class="card-body row">
+							<div class="col-2  text-center">
+								<br> <i class="fas fa-map-marked-alt map"></i>
+							</div>
+							<div class="col-6">
+								<h6 class="p-0 m-0">
+									<span th:text="${endereco.logradouro}"></span>
+								</h6>
+								<span th:text="${endereco.cidade}"></span> - <span
+									th:text="${endereco.cep}"> </span><br> <br>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<br>
+
+				<h5>Forma De Pagamento</h5>
+				<div class="card">
+					<div class="card-body row">
+						<div class="col-6">
+							<div th:if="${pagamento == 1}">
+								<i class="far fa-credit-card mr-5"></i> Cartão De Credito
+							</div>
+							<div th:if="${pagamento == 2}">
+								<i class="fal fa-credit-card-front mr-5"></i> Cartão De Debito
+							</div>
+							<div th:if="${pagamento == 3}">
+								<i class=""></i> Pix
+							</div>
+							<div th:if="${pagamento == 4}">
+								<i class="fas fa-barcode  mr-5"></i> Boleto
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="card col-12 mt-5 border-0">
+					<table class="table ">
+						<thead>
+							<tr>
+								<th scope="col"></th>
+								<th scope="col">Produto</th>
+
+								<th scope="col" class="text-center">Qtde</th>
+								<th scope="col" class="text-right">Valor</th>
+
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="item : ${listaItens}">
+								<td><img th:src="@{../../image/transferir.svg}" width="100" /></td>
+								<!--	th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" -->
+								<td th:text="${item.produto.nome}"></td>
+								<td><span th:text="${item.quantidade}"></span></td>
+
+								<td class="text-right" th:text="${item.valorTotal}"></td>
+
+
+
+							</tr>
+
+
+						</tbody>
+					</table>
+
+
+					<div class="mt-5 p-5">
+						<h6 class="card-title">
+							FRETE - R$ <span th:text="${compra.frete}"></span>
+						</h6>
+						<h5 class="card-title">
+							Total - R$ <span th:text="${compra.valorTotal}"></span>
+						</h5>
+
+					</div>
+
+					
+						<a class="btn btn-primary mr-0"
+							th:href="@{/finalizarVenda/{id}(id=${session.usuarioLogado.id})} "
+							role="button">Finalizar </a>
+
+				</div>
+
+
+			</div>
 
 
 

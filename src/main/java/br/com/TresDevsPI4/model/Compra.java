@@ -30,6 +30,20 @@ public class Compra implements Serializable {
 	private Date dataCompra = new Date();
 	private String formaPagamento;
 	private Double valorTotal=0.;
+	private Integer id_cliente;
+	private Integer endereco;
+	private Integer quantidade;
+	private double frete;
+
+	
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,5 +84,31 @@ public class Compra implements Serializable {
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+
+	public Integer getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(Integer id_cliente) {
+		this.id_cliente = id_cliente;
+	}
+
+	public Integer getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Integer endereco) {
+		this.endereco = endereco;
+	}
+
+	public double getFrete() {
+		return frete;
+	}
+
+	public void setFrete(double frete) {
+		this.frete = frete;
+	}
+	
+	
 
 }

@@ -102,7 +102,7 @@
 									th:href="@{/removerProduto/{id}(id=${item.produto.id})}"
 									role="button"><i class="fa fa-trash"></i></a></td>
 							</tr>
-							
+
 							<tr>
 								<td></td>
 								<td></td>
@@ -118,20 +118,32 @@
 				</div>
 
 			</div>
+
+
 			<div class="col mb-2">
 				<div class="row">
 					<div class="col-sm-12  col-md-4"></div>
 					<div class="col-sm-12  col-md-4"></div>
 					<div class="col-sm-12 col-md-4 text-right">
-					<a class="btn btn-primary mr-0"
-						th:href="@{/loja/checkout-endereco} "
-						role="button">Checkout			
-					</a>
-
+					
+					
+						<div th:if="${session.usuarioLogado.nome != null}">
+							<a class="btn btn-primary mr-0"
+								th:href="@{/loja/checkout-endereco2/{id}(id=${session.usuarioLogado.id})} " role="button">Checkout
+							</a>
+						</div>
+						
+						
+						<div th:if="${session.usuarioLogado.nome == null}">
+							<a class="btn btn-primary mr-0" th:href="@{/login} "
+								role="button">Checkout </a>
+						</div>
+						
+						
+						
 					</div>
 				</div>
 			</div>
-
 
 
 		</div>

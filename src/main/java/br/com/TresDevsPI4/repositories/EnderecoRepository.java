@@ -15,4 +15,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 	@Query(nativeQuery = true, value = "select * from endereco where cliente = ?")
 	public List<Endereco> buscarEndereco(int id);
 	
+	@Query(nativeQuery = true, value = "select * from endereco where id = ?")
+	public List<Endereco> buscarEndereco2(int id);
+	
 }

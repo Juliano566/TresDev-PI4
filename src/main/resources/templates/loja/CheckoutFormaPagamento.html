@@ -11,58 +11,61 @@
 	href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
 <title>Loja -=TresDev=-</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<link rel="stylesheet" type="text/css"
+	href="../../static/css/contato.css" media="screen" />
+<script src="../../js/modal.js"></script>
 
 </head>
 <body>
 
- 
-
-
 	<section class="layout-content" layout:fragment="corpo">
 
 		<div class="row m-5">
-			<div class="col-7 mt-2 pt-5 ml-2 mr-1">
-				<h3>Como você prefere pagar?</h3><br>
-				
+			<div class="col-6 mt-2 pt-5 ml-2 mr-1">
+
+				<h4>Como você prefere pagar?</h4>
+				<br>
+
 				<h5>Cartões</h5>
 				<div class="card" style="width: 33rem;">
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><input type="radio" class="mr-1"> <i class="far fa-credit-card mr-5"></i>Novo cartão de crédito</li>
-						<li class="list-group-item"><input type="radio" class="mr-1"> <i class="fal fa-credit-card-front mr-5"></i>Novo cartão de débito</li>
-					
+						<li class="list-group-item"><i
+							class="far fa-credit-card mr-5"></i>Cartão de crédito <a
+							class="btn btn-primary ml-5" th:href="@{/loja/formaDePagamento}"
+							role="button">Selecionar</a></li>
+						<li class="list-group-item"><i
+							class="fal fa-credit-card-front mr-5"></i>Cartão de débito <a
+							class="btn btn-primary ml-5" th:href="@{/loja/formaDePagamento}"
+							role="button">Selecionar</a></li>
+
 					</ul>
+
+
 				</div>
-				<br><br>
-				
+				<br> <br>
+
 				<h5>Pagamentos antecipados</h5>
 				<div class="card" style="width: 33rem;">
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><input type="radio" class="mr-1"> <i class="fas fa-qrcode mr-5"></i>Pix (Aprovação imediata)</li>
-						<li class="list-group-item"><input type="radio" class="mr-1"> <i class="fas fa-barcode  mr-5"></i></i>Boleto (Será aprovado em 1 ou 2 dias úteis.)</li>
-						
-					
+						<li class="list-group-item"></i>Pix (Aprovação imediata) <a
+							class="btn btn-primary ml-5" th:href="@{/loja/resumo/{id}(id=${3})}"
+							role="button">Selecionar</a></li>
+						<li class="list-group-item"><i class="fas fa-barcode  mr-5"></i></i>Boleto
+							<a class="btn btn-primary ml-5"
+							th:href="@{/loja/resumo/{id}(id=${4})}" role="button">Selecionar</a></li>
+
+
 					</ul>
 				</div>
 
-				<br>
-				<button class="btn btn-primary mr-0">Continuar</button>
 			</div>
 
 			<br>
-			<div class="card col-4 mt-5 border-0">
-				<img class="card-img-top" src="../../image/transferir.svg"
-					alt="Imagem de capa do card">
-				<div class="card-body">
+			<div class="card col-5 mt-5 border-0">
 
-					<p class="card-text">Quantidade: 1</p>
-					<hr>
-					<h5 class="card-title">Pc Cpu Intel Core I5</h5>
-					<p class="card-text">valor do produto - R$ 3000.00</p>
-					<p class="card-text">Valor do frete - R$50,00</p>
-					<hr>
-					<h5 class="card-title">Total - R$ 3050,00</h5>
-				</div>
+				<!-- Modal quantidade de parcelas-->
+
+
 			</div>
 
 		</div>

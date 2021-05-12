@@ -1,5 +1,8 @@
 package br.com.TresDevsPI4.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,6 +25,7 @@ import br.com.TresDevsPI4.model.Endereco;
 import br.com.TresDevsPI4.model.Funcionario;
 import br.com.TresDevsPI4.model.ItensCompra;
 import br.com.TresDevsPI4.model.Produto;
+import br.com.TresDevsPI4.repositories.CompraRepositorio;
 import br.com.TresDevsPI4.repositories.EnderecoRepository;
 import br.com.TresDevsPI4.repositories.ItensCompraRepositorio;
 import br.com.TresDevsPI4.repositories.ProdutoRepository;
@@ -29,6 +34,7 @@ import br.com.TresDevsPI4.services.Util;
 @Controller
 public class CarrinhoController {
 
+	private static String caminhoImagens = "C:/Users/julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 	private List<ItensCompra> itensCompra = new ArrayList<ItensCompra>();
 	private Cliente cliente;
 
@@ -40,9 +46,18 @@ public class CarrinhoController {
 
 	@Autowired
 	private ProdutoRepository repositorioProduto;
-	
+
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+
+	@Autowired
+	private CompraRepositorio compraRepository;
 
 	private Compra compra = new Compra();
+	
+	Integer id_endereco;
+	
+	Integer pagamento;
 
 	private void calcularTotal() {
 		compra.setValorTotal(0.);
@@ -57,26 +72,51 @@ public class CarrinhoController {
 		calcularTotal();
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra);
-	
+
+		return mv;
+	}
+
+	@GetMapping("/loja/checkout-endereco/{id}")
+	public ModelAndView endereco(Produto produto, @PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco");
+		calcularTotal();
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
+		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco(id));
 		return mv;
 	}
 	
-
-
-
-	@GetMapping("/loja/checkout-endereco")
-	public ModelAndView endereco(Produto produto) {
-		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco");
+	@GetMapping("/loja/checkout-endereco2/{id}")
+	public ModelAndView endereco2(Produto produto, @PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/loja/CheckoutEndereco2");
+		calcularTotal();
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
+		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco(id));
+		return mv;
+	}
+	
+	@GetMapping("/loja/formaDePagamento/{id}")
+	public ModelAndView pagamento2(Produto produto, @PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/loja/CheckoutFormaPagamento");
+		id_endereco = id;
 		calcularTotal();
 		mv.addObject("compra", compra);
 		mv.addObject("listaItens", itensCompra);
 		return mv;
 	}
 
-	@GetMapping("/loja/resumo")
-	public ModelAndView pagamento(Produto produto) {
-		ModelAndView mv = new ModelAndView("/loja/resumoVenda");
+	@GetMapping("/loja/resumo/{id}")
+	public ModelAndView pagamento(Produto produto, @PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/loja/resumoVenda");	
+		pagamento = id;
+		compra.setFrete(compra.getValorTotal() * 0.01);
 		mv.addObject("produto", produto);
+		calcularTotal();
+		mv.addObject("compra", compra);
+		mv.addObject("listaItens", itensCompra);
+		mv.addObject("pagamento", pagamento);
+		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco2(id_endereco));
 		return mv;
 	}
 
@@ -159,8 +199,6 @@ public class CarrinhoController {
 			}
 			System.out.println("teste2");
 			System.out.println(itensCompra.indexOf(compra.getValorTotal()));
-			
-			
 
 		}
 		System.out.println("teste3");
@@ -168,11 +206,17 @@ public class CarrinhoController {
 		return "redirect:/loja/carrinho";
 
 	}
-	
-	
-	
-	
 
+	@GetMapping("/mostrarImagens/{imagem}")
+	@ResponseBody
+	public byte[] retornarImagem(@PathVariable("imagem") String imagem) throws IOException {
+		// System.out.println(imagem);
+		File imagemarquivo = new File(caminhoImagens + imagem);
+		if (imagem != null || imagem.trim().length() > 0) {
+			return Files.readAllBytes(imagemarquivo.toPath());
+		}
+		return null;
+	}
 
 	@GetMapping("/removerProduto/{id}")
 	public String removerProdutoCarrinho(@PathVariable Integer id) {
@@ -185,6 +229,23 @@ public class CarrinhoController {
 		}
 		mv.addObject("listaItens", itensCompra);
 		return "redirect:/loja/carrinho";
-
 	}
+
+	@GetMapping("/finalizarVenda/{id}")
+	public ModelAndView salvar(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("/index");
+		int num = 0;
+		compra.setId_cliente(id);
+		compra.setEndereco(id_endereco);
+		compraRepository.save(compra);
+		Integer idCompra = compraRepository.buscarIdCompra();
+		for (ItensCompra it : itensCompra) {
+			it.setId_compra(idCompra);
+		}
+		for (ItensCompra it : itensCompra) {
+			repositorioItensCompra.save(it);
+		}
+		return mv;
+	}
+
 }

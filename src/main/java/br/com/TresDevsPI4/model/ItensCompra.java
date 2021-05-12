@@ -46,6 +46,8 @@ public class ItensCompra implements Serializable {
 	private Double valorUnitario = 0.;
 
 	private Double valorTotal = 0.;
+	
+	private Integer id_compra;
 
 	public Double getValorTotal() {
 		return valorTotal;
@@ -97,5 +99,15 @@ public class ItensCompra implements Serializable {
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
+
+	public Integer getId_compra() {
+		return id_compra;
+	}
+
+	public void setId_compra(Integer id_compra) {
+		this.id_compra = id_compra;
+	}
+	
+	
 
 }
