@@ -242,14 +242,15 @@ public class CarrinhoController {
 		ModelAndView mv = new ModelAndView("/loja/vendaFinalizada");
 		compra.setId_cliente(id);
 		compra.setEndereco(id_endereco);
+		
 
 		switch (pagamento) {
 		case 1: {
-			compra.setFormaPagamento("Cartão de credito");
+			compra.setFormaPagamento("Cartï¿½o de credito");
 			break;
 		}
 		case 2: {
-			compra.setFormaPagamento("Cartão de debito");
+			compra.setFormaPagamento("Cartï¿½o de debito");
 			break;
 		}
 		case 3: {
@@ -267,6 +268,7 @@ public class CarrinhoController {
 			con += it.getQuantidade();
 		}
 		compra.setQuantidade(con);
+		compra.setStatus("Aguardando Pagamento");
 		compraRepository.save(compra);
 		Integer idCompra = compraRepository.buscarIdCompra();
 		for (ItensCompra it : itensCompra) {

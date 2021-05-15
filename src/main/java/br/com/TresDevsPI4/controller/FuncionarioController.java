@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.TresDevsPI4.model.Categoria;
 import br.com.TresDevsPI4.model.Funcionario;
+import br.com.TresDevsPI4.repositories.CompraRepositorio;
 import br.com.TresDevsPI4.repositories.FuncionarioRepository;
 import br.com.TresDevsPI4.services.Util;
 
@@ -23,6 +24,11 @@ public class FuncionarioController {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
+	
+	
+	@Autowired
+	private CompraRepositorio compraRepository;
+	
 
 	@GetMapping("/teste")
 	public ModelAndView teste(Funcionario funcionario) {
@@ -94,5 +100,25 @@ public class FuncionarioController {
 		return listar();
 
 	}
+	
+	
+	@GetMapping("administrativo/estoquista/listarPedidos")
+	public ModelAndView listarPedidos() {
+		ModelAndView mv = new ModelAndView("administrativo/produto/statusCompras");
+		mv.addObject("listarPedidos", compraRepository.findAll());
+		return mv;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

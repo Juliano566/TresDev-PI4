@@ -50,7 +50,6 @@
 						<tr>
 							<th>Nº</th>
 							<th>Forma De Pagamento</th>
-							<th>Status </th>
 							<th>Quantidade</th>
 							<th>Valor</th>
 							<th>Frete</th>
@@ -61,7 +60,6 @@
 						<tr th:each="pedidos : ${listarPedidos}">
 							<td th:text="${pedidos.id}"></td>
 							<td th:text="${pedidos.formaPagamento}"></td>
-							<td th:text="${pedidos.status}"></td>
 							<td th:text="${pedidos.quantidade}"></td>	
 							<td th:text="${pedidos.valorTotal}"></td>	
 							<td th:text="${pedidos.frete}"></td>

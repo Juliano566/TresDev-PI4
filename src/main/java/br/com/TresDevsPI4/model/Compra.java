@@ -27,6 +27,7 @@ public class Compra implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra = new Date();
 	private String formaPagamento;
+	private String status;
 	private Double valorTotal=0.;
 	private Integer id_cliente;
 	private Integer endereco;
@@ -34,6 +35,14 @@ public class Compra implements Serializable {
 	private double frete;
 
 	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Integer getQuantidade() {
 		return quantidade;

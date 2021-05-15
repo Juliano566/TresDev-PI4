@@ -16,7 +16,7 @@
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
 						<span>Lista de Pedidos</span></li>
 				</ul>
-				
+
 			</div>
 		</nav>
 
@@ -43,34 +43,45 @@
 				</div>
 			</div>
 
+			<h4>Endereço</h4>
+			<div th:each="endereco : ${listaEndereco}">
+				<div class="card col-5">
+					<div class="card-body row">
+						<div class="col-8  text-center">
+							<br> <i class="fas fa-map-marked-alt map"></i>
+						</div>
+						<div class="col-6">
+							<h6 class="p-0 m-0">
+								<span th:text="${endereco.logradouro}"></span>
+							</h6>
+							<span th:text="${endereco.cidade}"></span> - <span
+								th:text="${endereco.cep}"> </span><br> <br>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
 
 			<div class="table-responsive">
 				<table class="table table-striped table-hover table-sm">
 					<thead>
 						<tr>
-							<th>Nº</th>
-							<th>Forma De Pagamento</th>
-							<th>Status </th>
-							<th>Quantidade</th>
+							<th>Imagem</th>
+							<th>Nome</th>
+							<th>Quatidade</th>
 							<th>Valor</th>
-							<th>Frete</th>
-							<th>Data</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="pedidos : ${listarPedidos}">
-							<td th:text="${pedidos.id}"></td>
-							<td th:text="${pedidos.formaPagamento}"></td>
-							<td th:text="${pedidos.status}"></td>
-							<td th:text="${pedidos.quantidade}"></td>	
-							<td th:text="${pedidos.valorTotal}"></td>	
-							<td th:text="${pedidos.frete}"></td>
-							<td th:text="${pedidos.dataCompra}"></td>		
-							<td colspan="2"><a class="btn btn-info btn-sm"
-									th:href="@{/cliente/listarPedidos/detalhes/{id}(id=${pedidos.id})}"
-									role="button"> <span class="oi oi-plus" title="Editar"
-										aria-hidden="true"></span>
-								</a>									
+							<td><img
+								th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${pedidos.produto.foto1})}"
+								width="100" /></td>
+							<td th:text="${pedidos.produto.nome}"></td>
+							<td th:text="${pedidos.quantidade}"></td>
+							<td th:text="${pedidos.valorUnitario}"></td>
+
 						</tr>
 					</tbody>
 				</table>
