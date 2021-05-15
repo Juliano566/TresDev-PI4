@@ -1,6 +1,7 @@
 package br.com.TresDevsPI4.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,5 +23,8 @@ public interface CompraRepositorio extends JpaRepository<Compra, Integer> {
 	@Query(nativeQuery = true, value = "select endereco from compra where id = ?")
 	public Integer bustarEndereco(Integer id);
 	
+	
+	@Query(nativeQuery = true, value = "select * from compra where id = ?")
+	public Optional<Compra> buscarId(Integer id);
 	
 }

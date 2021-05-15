@@ -66,11 +66,7 @@
 								<td th:text="${pedidos.valorTotal}"></td>
 								<td th:text="${pedidos.frete}"></td>
 								<td th:text="${pedidos.dataCompra}"></td>
-								<td colspan="2"><a class="btn btn-info btn-sm"
-									th:href="@{/cliente/listarPedidos/detalhes/{id}(id=${pedidos.id})}"
-									role="button"> <span class="oi oi-plus" title="Editar"
-										aria-hidden="true"></span>
-										
+								
 										
 										
 										<td colspan="2"><div class="dropdown" >
@@ -80,11 +76,15 @@
 													aria-expanded="false">STATUS</button>
 												<div class="dropdown-menu"
 													aria-labelledby="dropdownMenuButton">
-													<a class="dropdown-item" href="">Alguma ação</a> <a
-														class="dropdown-item" href="#">Outra ação</a> <a
-														class="dropdown-item" href="#">Alguma coisa aqui</a>
+													<a class="dropdown-item" th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${0})}">aguardando pagamento</a> <a
+														class="dropdown-item" th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${1})}">pagamento rejeitado</a> <a
+														class="dropdown-item" th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${2})}">pagamento com sucesso</a> <a
+														class="dropdown-item" th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${3})}">aguardando retirada</a> <a
+														class="dropdown-item" th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${4})}">em transito</a> <a
+														class="dropdown-item"  th:href="@{/alterarStatus/{id}/{acao}(id=${pedidos.id},acao=${5})}">entregue</a>
 												</div>
-											</div></a>
+											</div>
+											</a>
 							</tr>
 
 						</tbody>

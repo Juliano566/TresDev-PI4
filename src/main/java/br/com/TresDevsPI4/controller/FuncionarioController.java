@@ -1,5 +1,6 @@
 package br.com.TresDevsPI4.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+
 import br.com.TresDevsPI4.model.Categoria;
+import br.com.TresDevsPI4.model.Cliente;
+import br.com.TresDevsPI4.model.Compra;
 import br.com.TresDevsPI4.model.Funcionario;
+import br.com.TresDevsPI4.model.ItensCompra;
 import br.com.TresDevsPI4.repositories.CompraRepositorio;
 import br.com.TresDevsPI4.repositories.FuncionarioRepository;
 import br.com.TresDevsPI4.services.Util;
@@ -111,14 +117,54 @@ public class FuncionarioController {
 	}
 	
 	
+	@GetMapping("/alterarStatus/{id}/{acao}")
+	public ModelAndView alterarStatusEstoquista(@PathVariable Integer id, @PathVariable int acao) {
+		
+		
+		Optional<Compra> compra = compraRepository.buscarId(id);
 	
+
+		
+		switch (acao) {
+		case 0: {
+			compra.get().setStatus("aguardando pagamento");
+			compraRepository.save(compra.get());
+			break;
+		}		
+		case 1: {
+			compra.get().setStatus("pagamento rejeitado");
+			compraRepository.save(compra.get());
+			break;
+		}	
+		case 2: {
+			compra.get().setStatus("pagamento com sucesso");
+			compraRepository.save(compra.get());
+			break;
+		}
+		case 3: {
+			compra.get().setStatus("aguardando retirada");
+			compraRepository.save(compra.get());
+			break;
+		}
+		case 4: {
+			compra.get().setStatus("em transito");
+			compraRepository.save(compra.get());
+			break;
+		}
+		case 5: {
+			compra.get().setStatus("entregue");
+			compraRepository.save(compra.get());
+			break;
+		}
+		
+	}
+		return listarPedidos();
+	}
+
 	
-	
-	
-	
-	
+	}
 	
 	
 	
 
-}
+
