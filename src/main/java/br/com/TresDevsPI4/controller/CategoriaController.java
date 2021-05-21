@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,61 +16,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import br.com.TresDevsPI4.model.Categoria;
+import br.com.TresDevsPI4.model.Funcionario;
+import br.com.TresDevsPI4.model.Produto;
 import br.com.TresDevsPI4.repositories.CategoriaRepository;
 
-@RestController
-@RequestMapping("/categorias")
+@Controller
 public class CategoriaController {
-	
+
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-		
-	@PostMapping
-	public @ResponseBody Categoria novaCategoria(@RequestParam String nome) {
-		Categoria categoria = new Categoria(nome);
-		categoriaRepository.save(categoria);
-		
-		return categoria;
+
+	@GetMapping("/administrativo/categoria")
+	public ModelAndView listar(Categoria categoria) {
+		ModelAndView mv = new ModelAndView("/administrativo/categoria/listarCategoria");
+		mv.addObject("listarCategoria", categoriaRepository.findAll());
+		mv.addObject("categoria", categoria);
+		return mv;
 	}
-	
-	@GetMapping
-	public Iterable<Categoria> obterCategorias() {
-		return categoriaRepository.findAll();
-	}
-	
-	@GetMapping(path="/nome/{parteNome}")
-	public Iterable<Categoria>obterCategoriaPorNome(@PathVariable String parteNome){
-		return categoriaRepository.findByNomeContaining(parteNome);
-	}
-	
-	
-	@GetMapping(path="/pagina/{numeroPagina}/{qtdePagina}")
-	public Iterable<Categoria> obterCategoriasPaginada(
-			@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
-		if(qtdePagina >= 5) qtdePagina = 5;
-		Pageable page = PageRequest.of(numeroPagina, qtdePagina);
-		return categoriaRepository.findAll(page);
-	}
-	
-	@GetMapping(path="/{id}")
-	public Optional<Categoria> obterCategoriPorId(@PathVariable int id) {
-		return categoriaRepository.findById(id);
-		
-	}
-	
-	@PutMapping
-	public Categoria alterarCategoria( Categoria categoria) {
-		categoriaRepository.save(categoria);
-		return categoria;
-	}
-	
-	
-	@DeleteMapping(path = "/delete/{id}")
-	public void excluirCategoria(@PathVariable int id) {
-		 categoriaRepository.deleteById(id);
-	}
+
 	
 	
 	
+	  @PostMapping("/administrativo/categoria/salvar") public String
+	  salvar(Categoria categoria, BindingResult result) {
+	  
+	  categoriaRepository.save(categoria);
+	  
+	  return "redirect:/administrativo/categoria";
+	  
+	 }
+	  
+	  @GetMapping("/administrativo/inativar/categoria/{id}")
+		public ModelAndView inativar(@PathVariable("id") int id) {
+			Optional<Categoria> categoria = categoriaRepository.findById((int) id);
+
+			if (categoria.get().getStatus() == false) {
+				categoria.get().setStatus(true);
+				categoriaRepository.save(categoria.get());
+				return listar(new Categoria());
+			}
+
+			else
+
+				categoria.get().setStatus(false);
+
+			categoriaRepository.save(categoria.get());
+			return listar(new Categoria());
+
+		}
+	  
+	  
+	  @GetMapping("/administrativo/editar/categoria/{id}")
+		public ModelAndView editar(@PathVariable("id") int id) {
+			Optional<Categoria> categoria = categoriaRepository.findById((int) id);
+			return listar(categoria.get());
+		}
+	  
+	 
+
 }

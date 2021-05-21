@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{administrativo/fragments/layoutAdm}">
+
+<head>
+	<title>LISTAR FUNCIONARIO</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<div th:if="${session.usuarioLogado.cargo == 'Administrador'}">
+
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><i class="oi oi-caret-right"></i>
+							<span>Categoria</span></li>
+					</ul>
+
+				</div>
+			</nav>
+
+			<div class="container">
+
+				<p>
+					<i class="oi oi-magnifying-glass"></i><span></span>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+						aria-controls="collapseNome">Nome</button>
+				<div class="row">
+					<div class="col">
+						<div class="collapse" id="collapseNome">
+
+							<nav class="navbar navbar-light bg-light">
+								<form class="form-inline" method="GET" action="#">
+									<input class="form-control mr-sm-2" type="search" placeholder="nome"
+										aria-label="Search" />
+									<button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+								</form>
+							</nav>
+
+						</div>
+					</div>
+				</div>
+
+				<!--BOTÃO CADASTRO CATEGORIA-->
+				<div class="container" id="cadastro">
+
+					<form action="/administrativo/categoria/salvar" enctype="multipart/form-data"
+						th:object="${categoria}" method="POST">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="nome">Nome</label> <input type="text" class="form-control" id="nome" th:field="*{nome}"
+									placeholder="Categoria" name="nome" autofocus="autofocus" value="" required
+									minlength="5" />
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+
+
+
+
+						<input type="hidden" id="id" name="id" value="" th:field="*{id}" />
+						<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+					</form>
+				</div>
+
+
+
+				<!--TABELA LISTAR CATEGORIA-->
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Categoria</th>
+								<th>status</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="categoria : ${listarCategoria}">
+								<td th:text="${categoria.id}"></td>
+								<td th:text="${categoria.nome}"></td>
+								<td th:text="${categoria.status}"></td>
+								
+								<td colspan="2"><a class="btn btn-info btn-sm"
+									th:href="@{/administrativo/editar/categoria/{id}(id=${categoria.id})}"
+									role="button"> <span class="oi oi-brush" title="Editar"
+										aria-hidden="true"></span>
+								</a> <a class="btn btn-info btn-sm"
+									th:href="@{/administrativo/inativar/categoria/{id}(id=${categoria.id})}"
+									role="button"> <span class="oi oi-circle-x"
+										title="Ativar/Inativar" aria-hidden="true"></span>
+								</a>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+		<div th:if="${session.usuarioLogado.cargo == 'Estoquista'}">
+			<h1>Acesso não autorizado</h1>
+		</div>
+	</section>
+
+
+</body>
+
+</html>
