@@ -1,14 +1,27 @@
 package br.com.TresDevsPI4.model;
 
+import java.io.File;
 import java.io.Serializable;
 
-public class imagem implements Serializable{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+
+@Entity
+public class Imagem implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String caminho;
 	
 	private int idProduto;
+	
+	private File img;
 
 	public int getId() {
 		return id;
@@ -34,6 +47,14 @@ public class imagem implements Serializable{
 		this.idProduto = idProduto;
 	}
 
+	public File getImg() {
+		return img;
+	}
+
+	public void setImg(File img) {
+		this.img = img;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,7 +73,7 @@ public class imagem implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		imagem other = (imagem) obj;
+		Imagem other = (Imagem) obj;
 		if (caminho == null) {
 			if (other.caminho != null)
 				return false;

@@ -23,5 +23,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	@Query(nativeQuery = true, value = "select * from produto where categoria = ? and status = true")
 	public List<Produto> buscarProdutoCategoria(String categoria);
 	
+	@Query(nativeQuery = true, value = "select max(id) from produto")
+	public Integer buscarIdProduto();
+	
 	
 }
