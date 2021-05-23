@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.TresDevsPI4.model.Cliente;
 import br.com.TresDevsPI4.model.Produto;
+import br.com.TresDevsPI4.repositories.CategoriaRepository;
 import br.com.TresDevsPI4.repositories.ProdutoRepository;
 import br.com.TresDevsPI4.services.Util;
 
@@ -23,38 +24,55 @@ import br.com.TresDevsPI4.services.Util;
 public class indexController {
 
 	boolean teste = false;
+	boolean testeCategoria = false;
+	String valorCategoria;
 
 	@Autowired
 	private ProdutoRepository produtoRepositorio;
 
+	@Autowired
+	private CategoriaRepository categoriaRepositorio;
+
 	@RequestMapping(path = { "/index", "/" })
 	public ModelAndView index(HttpSession session, Cliente cliente) {
 		ModelAndView mv = new ModelAndView("/index");
-		//System.out.println("verfica " + teste);
-		
 		if (!teste) {
 			session.setAttribute("usuarioLogado", cliente);
-			mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
-			//System.out.println("111111111111111");
+			mv.addObject("listaCategorias", categoriaRepositorio.buscarCategorias());
+			if (!testeCategoria) {
+				mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
+			} else {
+				mv.addObject("listaProdutos", produtoRepositorio.buscarProdutoCategoria(valorCategoria));
+				testeCategoria = false;
+			}
 			teste = true;
-			//System.out.println("verfica " + teste);
 			return mv;
 		}
-
-		mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
-		//System.out.println("22222222222");
+		mv.addObject("listaCategorias", categoriaRepositorio.buscarCategorias());
+		if (!testeCategoria) {
+			mv.addObject("listaProdutos", produtoRepositorio.buscarTrue());
+		} else {
+			mv.addObject("listaProdutos", produtoRepositorio.buscarProdutoCategoria(valorCategoria));
+			testeCategoria = false;
+		}
 		return mv;
+	}
+
+	@GetMapping("/index/{categoria}")
+	public String categorias(@PathVariable("categoria") String categoria) {
+		testeCategoria = true;
+		valorCategoria = categoria;
+		return "redirect:/";
+	}
+
+	// desloga sessao
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		teste = false;
+		return "redirect:/";
 
 	}
-	
-	//desloga sessao
-		@GetMapping("/logout")
-		public String logout(HttpSession session) {
-			session.invalidate();
-			teste = false;
-			return "redirect:/";
-
-		}
 
 	@GetMapping("/loja/detalhes/{produtoId}")
 	public ModelAndView detalhesProduto(@PathVariable Integer produtoId) {
@@ -68,7 +86,6 @@ public class indexController {
 
 		mv.addObject("produto", produto);
 		return mv;
-
 	}
 
 }

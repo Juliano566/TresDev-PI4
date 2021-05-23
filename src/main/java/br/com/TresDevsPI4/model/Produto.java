@@ -49,6 +49,7 @@ public class Produto implements Serializable {
 	private String foto2;
 	private String foto3;
 	private String foto4;
+	private String categoria;
 
 	public Produto() {
 
@@ -154,4 +155,14 @@ public class Produto implements Serializable {
 		this.foto4 = foto4;
 	}
 
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	
+	
 }

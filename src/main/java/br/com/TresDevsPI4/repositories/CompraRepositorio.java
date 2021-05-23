@@ -27,4 +27,6 @@ public interface CompraRepositorio extends JpaRepository<Compra, Integer> {
 	@Query(nativeQuery = true, value = "select * from compra where id = ?")
 	public Optional<Compra> buscarId(Integer id);
 	
+	@Query(nativeQuery = true, value = "select forma_pagamento from compra where id = ?")
+	public String buscarPagamento(Integer id);
 }

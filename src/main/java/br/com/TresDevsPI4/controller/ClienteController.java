@@ -94,6 +94,7 @@ public class ClienteController {
 		mv.addObject("listarPedidos", itensCompraRepository.listarCompra2(id));
 		Integer endereco = compraRepository.bustarEndereco(id);
 		mv.addObject("listaEndereco", enderecoRepository.buscarEndereco2(endereco));
+		mv.addObject("pagamento", compraRepository.buscarPagamento(id));
 		return mv;
 	}
 

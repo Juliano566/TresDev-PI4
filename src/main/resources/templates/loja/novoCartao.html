@@ -24,7 +24,6 @@
 		<div class="row m-5">
 			<div class="col-7 mt-2 pt-5 ml-2 mr-1">
 
-				<h3>Como você prefere pagar?</h3>
 				<br>
 
 				
@@ -40,12 +39,12 @@
 					<div class="card-body row">
 						<div class="col-6 ">
 						
-						<input type="text" placeholder="Número do cartao" class="dadosCartao" required>
-						<input type="text" placeholder="Nome Completo" class="dadosCartao" required>
-						<input type="text" placeholder="CPF do titular do cartão" class="dadosCartao" required>
+						<input type="text" placeholder="Número do cartao" class="dadosCartao" maxlength="16" required>
+						<input type="text" placeholder="Nome Completo" class="dadosCartao" maxlength="20" required>
+						<input type="text" placeholder="CPF do titular do cartão" class="dadosCartao" maxlength="11" required>
 						
-						<input type="text" placeholder="Data de Vencimento" class="dadosCartao" required>
-						<input type="text" placeholder="Código de Segurança" class="dadosCartao" required>
+						<input type="date" placeholder="Data de Vencimento" class="dadosCartao" required>
+						<input type="text" placeholder="Código de Segurança" class="dadosCartao" maxlength="3" required>
 						</div>
 						<div class="col-6">
 							<img class="card-img-top" src="../../image/images.jfif"

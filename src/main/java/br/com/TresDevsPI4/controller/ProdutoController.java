@@ -45,8 +45,8 @@ import br.com.TresDevsPI4.repositories.ProdutoRepository;
 public class ProdutoController {
 
 	// auterar para caminho absoluto real da maquina
-	private static String caminhoImagens = "C:/Users/renan.smaciel/workspace-spring-tool-suite-4-4.9.0.RELEASE";
-	//private static String caminhoImagens = "C:/Users/julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
+	//private static String caminhoImagens = "C:/Users/renan.smaciel/workspace-spring-tool-suite-4-4.9.0.RELEASE";
+	private static String caminhoImagens = "C:/Users/julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 	//private static String caminhoImagens = "C:/FACULDADE/SENAC_QUARTO SEMESTRE/PROJETO INTEGRADOR/TresDev-PI4/src/main/resources/static/image/";
 	////private static String caminhoImagens = "C:/Users/diego/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 	

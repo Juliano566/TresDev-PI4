@@ -246,11 +246,11 @@ public class CarrinhoController {
 
 		switch (pagamento) {
 		case 1: {
-			compra.setFormaPagamento("Cartï¿½o de credito");
+			compra.setFormaPagamento("Cartão de credito");
 			break;
 		}
 		case 2: {
-			compra.setFormaPagamento("Cartï¿½o de debito");
+			compra.setFormaPagamento("Cartão de debito");
 			break;
 		}
 		case 3: {

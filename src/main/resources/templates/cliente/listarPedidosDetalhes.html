@@ -2,6 +2,8 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	layout:decorate="~{cliente/layoutCLi}">
 <head>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
 <title>Listar Pedidos</title>
 <meta charset="utf-8">
 
@@ -48,18 +50,48 @@
 				<div class="card col-5">
 					<div class="card-body row">
 						<div class="col-8  text-center">
-							<br> <i class="fas fa-map-marked-alt map"></i>
+							<br> 
 						</div>
 						<div class="col-6">
 							<h6 class="p-0 m-0">
+							<i class="fas fa-map-marked-alt map"></i>
 								<span th:text="${endereco.logradouro}"></span>
 							</h6>
 							<span th:text="${endereco.cidade}"></span> - <span
 								th:text="${endereco.cep}"> </span><br> <br>
+								
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<br>
+
+			<h4>Forma de pagamento</h4>
+			<div class="card">
+				<div class="card-body row">
+					<div class="col-6">
+						<div th:if="${pagamento == 'Cartão de credito'}">
+							<i class="far fa-credit-card mr-5"></i> <span
+								th:text="${pagamento}"></span>
+						</div>
+						<div th:if="${pagamento == 'Cartão de debito'}">
+							<i class="fal fa-credit-card-front mr-5"></i> <span
+								th:text="${pagamento}"></span>
+						</div>
+						<div th:if="${pagamento == 'boleto'}">
+							<i class="fas fa-barcode  mr-5"></i> <span th:text="${pagamento}"></span>
+						</div>
+						<div th:if="${pagamento == 'Pix'}">
+							<i class=""></i> <span th:text="${pagamento}"></span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
 
 			<br>
 
