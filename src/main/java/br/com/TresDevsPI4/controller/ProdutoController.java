@@ -39,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.TresDevsPI4.model.ItensCompra;
 import br.com.TresDevsPI4.model.Produto;
 import br.com.TresDevsPI4.model.Imagem;
+import br.com.TresDevsPI4.repositories.CategoriaRepository;
 import br.com.TresDevsPI4.repositories.ImagemRepository;
 import br.com.TresDevsPI4.repositories.ProdutoRepository;
 
@@ -63,6 +64,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 
 	@Autowired
 	private ImagemRepository imagemRepository;
@@ -82,6 +86,7 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView("/administrativo/produto/cadastro");
 		mv.addObject("listaImagem", listaImagem);
 		mv.addObject("produto", produto);
+		mv.addObject("listaCategoria",categoriaRepository.findAll());
 		return mv;
 	}
 
@@ -113,7 +118,7 @@ public class ProdutoController {
 	public ModelAndView salvarI(Produto produto, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return cadastrar(produto);
+			return cadastrar( produto);
 
 		}
 		int cont = 0;

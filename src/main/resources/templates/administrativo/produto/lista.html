@@ -53,18 +53,20 @@
 							<tr>
 								<th>#</th>
 								<th>Nome</th>
-								<th>preco</th>
-								<th>quantidade</th>
-								<th>status</th>
-								<th>estrelas</th>
-								<th>descricao</th>
-								<th>imagem</th>
+								<th>Categoria</th>
+								<th>Preço</th>
+								<th>Quantidade</th>
+								<th>Status</th>
+								<th>Estrelas</th>
+								<th>Descricao</th>
+								<th>Imagem</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="produto : ${listaProdutos}">
 								<td th:text="${produto.id}"></td>
 								<td th:text="${produto.nome}"></td>
+								<td th:text="${produto.categoria}"></td>
 								<td th:text="${produto.preco}"></td>
 								<td th:text="${produto.quantidade}"></td>
 								<td th:text="${produto.status}"></td>

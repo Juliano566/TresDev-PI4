@@ -34,13 +34,14 @@
 				enctype="multipart/form-data" th:object="${produto}" method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Nome do Produto</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome Produto"
-							autofocus="autofocus" th:field="*{nome}" value="" required />
+						<label for="preco">Nome</label> <input type="text"
+							class="form-control" id="preco" placeholder="Nome Produto"
+							autofocus="autofocus" th:field="*{nome}" name="nome" value=""
+							required />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
-
+				
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="preco">Preço</label> <input type="number"
@@ -61,16 +62,20 @@
 					</div>
 				</div>
 
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="categoria">Categoria</label> <select name="categoria"
-							id="categoria">
-							<option value="Computador">Computador</option>
-							<option value="Monitor">Monitor</option>
+			     <div class="form-row">
+			     <div class="form-group col-md-6">
+						<label for="nome">categoria</label> <select th:field="*{categoria}"
+							class="form-control">
+							<option th:each="cat: ${listaCategoria}" th:value="${cat.nome}"
+								th:text="${cat.nome}"></option>
 						</select>
-						<div class="invalid-feedback"></div>
+
+						<div class="invalid-feedback">
+						
+						</div>
 					</div>
-				</div>
+					
+					</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
