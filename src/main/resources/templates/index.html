@@ -13,7 +13,7 @@
 <title>Loja -=TresDev=-</title>
 
 <!-- importação do bootstrap min.css -->
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- importação do css custom -->
 <link href="css/shop-homepage.css" rel="stylesheet">
@@ -41,17 +41,16 @@
 
 		<div class="row">
 
-			<div class="col-lg-3">
+			<div class="col-lg-4">
 				<!--  	<a>Usuario :</a> <span th:text="${session.usuarioLogado.nome}"></span> -->
-				<h1 class="my-4">Categorias</h1>
+				<h1 class="">Categorias</h1>
 				<div class="list-group">
-					<a href="/" class="list-group-item">Todas</a>
+					<a href="/" class="list-group-item p-3 mb-2 bg-dark text-white">Todas</a>
 				</div>
 
-				<div class="list-group" 
-				th:each="categoria : ${listaCategorias}">
-					<a th:href="@{/index/{categoria}(categoria=${categoria.nome})}" class="list-group-item"><span
-						th:text="${categoria.nome}"></span></a>
+				<div class=" " th:each="categoria : ${listaCategorias}">
+					<a th:href="@{/index/{categoria}(categoria=${categoria.nome})}" class="list-group-item p-3 mb-2 bg-dark text-white">
+					<span th:text="${categoria.nome}"></span></a>
 				</div>
 
 				<!-- 
@@ -71,7 +70,7 @@
 			</div>
 			<!-- /.col-lg-3 -->
 
-			<div class="col-lg-9 mt-5">
+			<div class="col-lg-8 mt-5">
 
 				<!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -154,7 +153,7 @@
 	<!-- /.container -->
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
+	<footer class="py-5 bg-dark footer fixed-bottom">
 		<div class="container">
 			<p class="m-0 text-center text-white">&copy; 2021 TresDev. Todos
 				os direitos reservados.</p>
