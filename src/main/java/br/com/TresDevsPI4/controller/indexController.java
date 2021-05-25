@@ -83,7 +83,7 @@ public class indexController {
 
 		Produto produto = produtoRepositorio.findById(produtoId).orElseThrow();
 		// System.out.println(produto.getId());
-
+		mv.addObject("listaCategorias", categoriaRepositorio.buscarCategorias());
 		mv.addObject("produto", produto);
 		return mv;
 	}

@@ -91,7 +91,7 @@
 				<div th:text="${mensagem}" th:if="${mensagem != null}"></div>
 
 
-				<div class="nother">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="Nome Completo"
@@ -103,7 +103,7 @@
 
 				<div th:text="${mensagemEmail}" th:if="${mensagemEmail != null}"></div>
 
-				<div class="form-">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="email">Email</label> <input type="email"
 							class="form-control" id="email" placeholder="email"
@@ -115,7 +115,7 @@
 
 
 				<div th:text="${mensagemCpf}" th:if="${mensagemCpf != null}"></div>
-				<div class="">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="nome">CPF</label> <input type="text"
 							class="form-control" id="nome" placeholder="CPF"
@@ -125,7 +125,7 @@
 					</div>
 				</div>
 
-				<div class="">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="senha">Senha</label> <input type="password"
 							class="form-control" id="senha" placeholder="senha"
@@ -139,7 +139,7 @@
 
 
 
-				<div class="form-">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="cep">CEP</label> <input type="text"
 							class="form-control" id="cep" name="cep" size="10" maxlength="9"
@@ -147,10 +147,7 @@
 							required />
 						<div class="invalid-feedback"></div>
 					</div>
-				</div>
 
-
-				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="endereco">Cidade</label> <input type="text"
 							class="form-control" id="cidade" placeholder=""
@@ -161,15 +158,13 @@
 				</div>
 
 
-				<div class="form-">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="bairro">Bairro</label> <input type="text"
 							class="form-control" id="bairro" name="bairro" value="" required />
 						<div class="invalid-feedback"></div>
 					</div>
-				</div>
 
-				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="rua">Rua</label> <input type="text"
 							class="form-control" id="rua" placeholder="" name="logradouro"
@@ -178,7 +173,7 @@
 					</div>
 				</div>
 
-				<div class="form-">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="endereco">Numero</label> <input type="number"
 							class="form-control" id="numero" placeholder=""
@@ -186,10 +181,7 @@
 							required />
 						<div class="invalid-feedback"></div>
 					</div>
-				</div>
 
-
-				<div class="form-">
 					<div class="form-group col-md-6">
 						<label for="complemento">Complemento</label> <input type="text"
 							class="form-control" id="complemento"
@@ -200,10 +192,11 @@
 				</div>
 
 
-				<div class="form-">
+				<div class="form-row">
 					<div class="form-group col-md-6">
-						<input type="checkbox" id="copiaEndereco" name="copiaEndereco" checked>
-						<label for="copiaEndereco">Copiar endereço para entrega</label>
+						<input type="checkbox" id="copiaEndereco" name="copiaEndereco"
+							checked> <label for="copiaEndereco">Copiar
+							endereço para entrega</label>
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>

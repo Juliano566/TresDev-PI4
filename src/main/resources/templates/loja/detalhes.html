@@ -1,70 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://thymeleaf.org" >
-	
+	xmlns:th="http://thymeleaf.org">
+
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <title>Loja  -=TresDev=-</title>
+<title>Loja -=TresDev=-</title>
 
-  <!-- importação do bootstrap min.css -->
-  <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- importação do bootstrap min.css -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-  <!-- importação do css custom -->
-  <link href="../../css/shop-homepage.css" rel="stylesheet">
-    <!-- importação do css custom -->
-  <link href="../../css/estilosDetalhes.css" rel="stylesheet">
-  
-    <!-- importação do css custom -->
-  <link href="../../css/shop-homepage.css" rel="stylesheet">
-  
-      <!-- importação do css custom -->
-  <link href="../../css/owl.carousel.css" rel="stylesheet">
-  
-        <!-- importação do css custom -->
-  <link href="../../css/responsive.css" rel="stylesheet">
-  
-  
-  
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+<!-- importação do css custom -->
+<link href="../../css/estilosDetalhes.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/shop-homepage.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/owl.carousel.css" rel="stylesheet">
+
+<!-- importação do css custom -->
+<link href="../../css/responsive.css" rel="stylesheet">
+
+
+
 
 </head>
-	
+
 <body>
-	
+
 	<div th:replace="layout :: navlinks"></div>
-  <!-- Page Content -->
-  <div class="container mt-5 pt-5">
+	<!-- Page Content -->
+	<div class="container mt-5 pt-5">
 
 
-    <div class="row">
+		<div class="row">
 
-      <div class="col-lg-4">
+			<div class="col-lg-4">
+				<!--  	<a>Usuario :</a> <span th:text="${session.usuarioLogado.nome}"></span> -->
+				<h1 class="">Categorias</h1>
+				<div class="list-group">
+					<a href="/" class="list-group-item p-3 mb-2 bg-dark text-white">Todas</a>
+				</div>
 
-        <h1 class="my-4">Categorias</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">HARDWARE</a>
-          <a href="#" class="list-group-item">PERIFÉRICOS</a>
-          <a href="#" class="list-group-item">COMPUTADORES</a>
-          <a href="#" class="list-group-item">MONITORES</a>
-          <a href="#" class="list-group-item">CADEIRAS GAMER</a>
-          <a href="#" class="list-group-item">ELETRONICOS</a>
-          <a href="#" class="list-group-item">NOTEBOOKS E PORTÁTEIS</a>
-          <a href="#" class="list-group-item">REDE & WIRELLES</a>
-          <a href="#" class="list-group-item">MUNDO GEEK</a>
-          <a href="#" class="list-group-item">KIT UPGRADE</a>
-        </div>
+				<div class=" " th:each="categoria : ${listaCategorias}">
+					<a th:href="@{/index/{categoria}(categoria=${categoria.nome})}"
+						class="list-group-item p-3 mb-2 bg-dark text-white"> <span
+						th:text="${categoria.nome}"></span></a>
+				</div>
 
-      </div>
-     
+			</div>
 
 
-      <div class="col-lg-8 my-5">
 
-       <!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+			<div class="col-lg-8 my-5">
+
+				<!--   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -90,185 +89,215 @@
             <span class="sr-only">Next</span>
           </a>
         </div> -->
-        
-        
-        <div class="row">
-        
-            
-                    <div class="product-content-right">
-                        <div class="product-breadcroumb">
-                            <a href="/">Home</a>
-                            <a href="">Nome da categoria</a>
-                            <a href=""><span th:text="${produto.nome}" ></span></a>
-                        </div>
-                        
-                        <div class="row">
-<div class="col-lg-6 col-md-6 mb-4">
-          
-          
-          
-            <div class="card text-center">
-                  
-      				 <!-- <span th:text="${produto.nome}" ></span>  -->
-            
-              <img class="card-img-top" th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" alt="">
-              <div class="card-body">
-             
-<!--                 <h5><span th:text="${produto.preco}"></span></h5> -->
-<!--                 <p class="card-text"><span th:text="${produto.descricao}"></span></p> -->
-              </div>
-              <div class="card-footer">
-              
-              <div class="row">
-              
-              	<img th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto2})}" class="img-thumbnail p-0 m-1" style="width: 100px; height: 100px">
-              	<img th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto3})}" class="img-thumbnail p-0 m-1" style="width: 100px; height: 100px">
-              	<img th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto4})}" class="img-thumbnail p-0 m-1" style="width: 100px; height: 100px">
-              	
-              </div>
-              <div class="row">
-              <div class="col-sm"> <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small></div>
-              
-               </div>
-                
-              </div>
-            </div>
-          </div>
-                            
-                            <div class="col-sm-6">
-                                <div class="product-inner">
-                                    <h2 class="product-name"><span th:text="${produto.nome}" ></span> </h2>
-                                    <div class="product-inner-price">
-                                        <ins>R$ <span th:text="${produto.preco}"></span></ins> <!-- <del>$100.00</del> -->
-                                    </div>    
-                                    
-                                    <form action="" class="cart">
-                                        <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                        </div>
-                                        <button class="add_to_cart_button" type="submit">ADD AO CARRINHO</button>
-                                    </form>   
-                                    
-                                    <div class="product-inner-category">
-                                        <p>Categoria: <a href="">pc</a>
-                                    </div> 
-                                    
-                                    <div role="tabpanel">
-                                        <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Descrição</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Avaliações</a></li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div >
-                                                <h2>Descrição do Produto</h2>  
-                                                <span th:text="${produto.descricao}">
-                                                Reviews
-                                            </div>
-                                            
-                                            <div role="tabpanel" class="tab-pane fade" id="profile">
-                                                <h2>Reviews</h2>
-                                                <div class="submit-review">
-                                                    <p><label for="name">Name</label> <input name="name" type="text"></p>
-                                                    <p><label for="email">Email</label> <input name="email" type="email"></p>
-                                                    <div class="rating-chooser">
-                                                        <p>Sua avaliação</p>
-
-                                                        <div class="rating-wrap-post">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <p><label for="review">Seus comentarios</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                                    <p><input type="submit" value="Submit"></p>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="m-6"><a href="/"><button class="btn btn-danger">Voltar</button></div>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-
-                                      
-                </div>
-        </div>
-        
-        
-        
-        
-        
-
-        <div class="row">
-        
-<!--           <div class="col-lg-6 col-md-6 mb-4"> -->
-          
-          
-          
-<!--             <div class="card text-center"> -->
-<!--                   	 <h4 class="ml-5">Detalhes do produto: </h4> -->
-<!--       				 <span th:text="${produto.nome}" ></span>  -->
-            
-<!--               <img class="card-img-top" th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" alt=""> -->
-<!--               <div class="card-body"> -->
-<!--                 <h4 class="card-title"> -->
-<!--                   <span th:text="${produto.nome}" ></span> -->
-<!--                 </h4> -->
-<!--                 <h5><span th:text="${produto.preco}"></span></h5> -->
-<!--                 <p class="card-text"><span th:text="${produto.descricao}"></span></p> -->
-<!--               </div> -->
-<!--               <div class="card-footer"> -->
-              
-<!--               <div class="row"> -->
-<!--               <div class="col-sm"> <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small></div> -->
-<!--               <div class="col-sm"> <a href="/"><button class="btn btn-danger">Voltar</button></a></div>	 -->
-<!--                </div> -->
-                
-<!--               </div> -->
-<!--             </div> -->
-<!--           </div> -->
-          
-          
-
-         
-
-        </div>
-        <!-- /.row -->
-        
 
 
-      </div>
-      <!-- /.col-lg-9 -->
+				<div class="row">
 
-    </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+					<div class="product-content-right">
+						<div class="product-breadcroumb">
+							<a href="/">Home</a> <a href="">Nome da categoria</a> <a href=""><span
+								th:text="${produto.nome}"></span></a>
+						</div>
 
- 
-  <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
-    <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
-    
-    <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
-    
-    <!-- Main Script -->
-    <script src="../js/main.js"></script>
+						<div class="row">
+							<div class="col-lg-6 col-md-6 mb-4">
+
+
+
+								<div class="card text-center">
+
+									<!-- <span th:text="${produto.nome}" ></span>  -->
+
+									<img class="card-img-top"
+										th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}"
+										alt="">
+									<div class="card-body">
+
+										<!--                 <h5><span th:text="${produto.preco}"></span></h5> -->
+										<!--                 <p class="card-text"><span th:text="${produto.descricao}"></span></p> -->
+									</div>
+									<div class="card-footer">
+
+										<div class="row">
+
+											<img
+												th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto2})}"
+												class="img-thumbnail p-0 m-1"
+												style="width: 100px; height: 100px"> <img
+												th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto3})}"
+												class="img-thumbnail p-0 m-1"
+												style="width: 100px; height: 100px"> <img
+												th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto4})}"
+												class="img-thumbnail p-0 m-1"
+												style="width: 100px; height: 100px">
+
+										</div>
+										<div class="row">
+											<div class="col-sm">
+												<small class="text-muted">&#9733; &#9733; &#9733;
+													&#9733; &#9734;</small>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<div class="product-inner">
+									<h2 class="product-name">
+										<span th:text="${produto.nome}"></span>
+									</h2>
+									<div class="product-inner-price">
+										<ins>
+											R$ <span th:text="${produto.preco}"></span>
+										</ins>
+										<!-- <del>$100.00</del> -->
+									</div>
+
+									<div class="cart">
+
+										<a class="add_to_cart_button" role="button"
+											th:href="@{/adicionarCarrinho/{id}(id=${produto.id})}">ADD
+											AO CARRINHO</a>
+									</div>
+
+									<div class="product-inner-category">
+										<p>
+											Categoria: <a href="">pc</a>
+									</div>
+
+									<div role="tabpanel">
+										<ul class="product-tab" role="tablist">
+											<li role="presentation" class="active"><a href="#home"
+												aria-controls="home" role="tab" data-toggle="tab">Descrição</a></li>
+											<li role="presentation"><a href="#profile"
+												aria-controls="profile" role="tab" data-toggle="tab">Avaliações</a></li>
+										</ul>
+										<div class="tab-content">
+											<div>
+												<h2>Descrição do Produto</h2>
+												<span th:text="${produto.descricao}"> Reviews 
+											</div>
+
+											<div role="tabpanel" class="tab-pane fade" id="profile">
+												<h2>Reviews</h2>
+												<div class="submit-review">
+													<p>
+														<label for="name">Name</label> <input name="name"
+															type="text">
+													</p>
+													<p>
+														<label for="email">Email</label> <input name="email"
+															type="email">
+													</p>
+													<div class="rating-chooser">
+														<p>Sua avaliação</p>
+
+														<div class="rating-wrap-post">
+															<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																class="fa fa-star"></i>
+														</div>
+													</div>
+													<p>
+														<label for="review">Seus comentarios</label>
+														<textarea name="review" id="" cols="30" rows="10"></textarea>
+													</p>
+													<p>
+														<input type="submit" value="Submit">
+													</p>
+												</div>
+
+											</div>
+											<div class="m-6">
+												<a href="/"><button class="btn btn-danger">Voltar</button>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+
+
+
+
+
+				<div class="row">
+
+					<!--           <div class="col-lg-6 col-md-6 mb-4"> -->
+
+
+
+					<!--             <div class="card text-center"> -->
+					<!--                   	 <h4 class="ml-5">Detalhes do produto: </h4> -->
+					<!--       				 <span th:text="${produto.nome}" ></span>  -->
+
+					<!--               <img class="card-img-top" th:src="@{/administrativo/mostrarImagens/{imagem}(imagem=${produto.foto1})}" alt=""> -->
+					<!--               <div class="card-body"> -->
+					<!--                 <h4 class="card-title"> -->
+					<!--                   <span th:text="${produto.nome}" ></span> -->
+					<!--                 </h4> -->
+					<!--                 <h5><span th:text="${produto.preco}"></span></h5> -->
+					<!--                 <p class="card-text"><span th:text="${produto.descricao}"></span></p> -->
+					<!--               </div> -->
+					<!--               <div class="card-footer"> -->
+
+					<!--               <div class="row"> -->
+					<!--               <div class="col-sm"> <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small></div> -->
+					<!--               <div class="col-sm"> <a href="/"><button class="btn btn-danger">Voltar</button></a></div>	 -->
+					<!--                </div> -->
+
+					<!--               </div> -->
+					<!--             </div> -->
+					<!--           </div> -->
+
+
+
+
+
+				</div>
+				<!-- /.row -->
+
+
+
+			</div>
+			<!-- /.col-lg-9 -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+
+	<!-- Latest jQuery form server -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+
+	<!-- Bootstrap JS form CDN -->
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!-- jQuery sticky menu -->
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../js/jquery.sticky.js"></script>
+
+	<!-- jQuery easing -->
+	<script src="../js/jquery.easing.1.3.min.js"></script>
+
+	<!-- Main Script -->
+	<script src="../js/main.js"></script>
 </body>
 <div th:replace="layout::footer"></div>
 </html>

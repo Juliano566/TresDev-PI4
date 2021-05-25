@@ -52,11 +52,12 @@ import br.com.TresDevsPI4.repositories.ProdutoRepository;
 public class ProdutoController {
 
 	private List<Imagem> listaImagem = new ArrayList<Imagem>();
+	private Produto produto2 = new Produto();
 
 	// auterar para caminho absoluto real da maquina
 	// private static String caminhoImagens =
 	// "C:/Users/renan.smaciel/workspace-spring-tool-suite-4-4.9.0.RELEASE";
-	//private static String caminhoImagens = "C:/Users/julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
+	private static String caminhoImagens = "C:/Users/julia/workspace-spring-tool-suite-4-4.9.0.RELEASE";
 	//private static String caminhoImagens = "C:/FACULDADE/SENAC_QUARTO SEMESTRE/PROJETO INTEGRADOR/TresDev-PI4/src/main/resources/static/image/";
 	//// private static String caminhoImagens =
 	// "C:/Users/diego/workspace-spring-tool-suite-4-4.9.0.RELEASE";
@@ -85,7 +86,7 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView("/administrativo/produto/cadastro");
 		mv.addObject("listaImagem", listaImagem);
 		mv.addObject("produto", produto);
-		mv.addObject("listaCategoria",categoriaRepository.findAll());
+		mv.addObject("listaCategoria",categoriaRepository.buscarCategorias());
 		return mv;
 	}
 
@@ -100,6 +101,7 @@ public class ProdutoController {
 	public ModelAndView editar(@PathVariable("id") int id) {
 		Optional<Produto> produto = produtoRepository.findById((int) id);
 		listaImagem = imagemRepository.buscarImagem(id);
+		produto2 = produto.get();
 		return cadastrar(produto.get());
 	}
 
@@ -264,8 +266,9 @@ public class ProdutoController {
 		listaImagem.add(imagem);
 
 		ModelAndView mv = new ModelAndView("/administrativo/produto/cadastro");
-		mv.addObject("produto", produto);
+		mv.addObject("produto", produto2);
 		mv.addObject("listaImagem", listaImagem);
+		mv.addObject("listaCategoria",categoriaRepository.findAll());
 		return mv;
 	}
 
@@ -276,12 +279,14 @@ public class ProdutoController {
 		for (Imagem it : listaImagem) {
 			if (it.getCaminho().equals(caminho)) {
 				listaImagem.remove(it);
+				imagemRepository.deleteById(it.getId());
 				break;
 			}
 		}
 
-		mv.addObject("produto", produto);
+		mv.addObject("produto", produto2);
 		mv.addObject("listaImagem", listaImagem);
+		mv.addObject("listaCategoria",categoriaRepository.buscarCategorias());
 		return mv;
 
 	}
