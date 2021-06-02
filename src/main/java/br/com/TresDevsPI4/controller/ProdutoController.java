@@ -236,9 +236,13 @@ public class ProdutoController {
 	public ModelAndView removerUm(@PathVariable("id") int id) {
 		Optional<Produto> produto = produtoRepository.findById((int) id);
 
+		if (produto.get().getQuantidade() > 0) {
+			if (produto.get().getQuantidade() == 1) {
+				produto.get().setStatus(false);
+			}
 		produto.get().setQuantidade(produto.get().getQuantidade() - 1);
-
 		produtoRepository.save(produto.get());
+		}
 		return listarEstoque();
 
 	}

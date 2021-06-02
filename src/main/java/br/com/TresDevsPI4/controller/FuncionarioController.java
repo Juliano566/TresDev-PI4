@@ -111,7 +111,7 @@ public class FuncionarioController {
 	@GetMapping("administrativo/estoquista/listarPedidos")
 	public ModelAndView listarPedidos() {
 		ModelAndView mv = new ModelAndView("administrativo/produto/statusCompras");
-		mv.addObject("listarPedidos", compraRepository.findAll());
+		mv.addObject("listarPedidos", compraRepository.buscarCompra());
 		return mv;
 		
 	}
